@@ -1,5 +1,6 @@
 "use client";
 
+import ExpeditionReceipt from "@/components/BookingCard";
 import About from "@/components/ScrollAbout";
 import ScrollHorizontal from "@/components/ScrollHorizontal";
 import Programs from "@/components/ScrollPrograms";
@@ -33,10 +34,10 @@ export default function Home() {
 
      <About />
      <Programs/>
-
-      <section className="panel sticky top-0 z-40 flex h-screen items-center justify-center bg-zinc-700 text-6xl font-bold text-white">
+     <ExpeditionReceipt />
+      {/* <section className="panel sticky top-0 z-40 flex h-screen items-center justify-center bg-zinc-700 text-6xl font-bold text-white">
         Section 3
-      </section>
+      </section> */}
     </main>
   );
 }

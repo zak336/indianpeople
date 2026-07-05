@@ -47,6 +47,7 @@ export default function Hero() {
           y,
         }}
       >
+        
         <div className="flex flex-col items-center gap-6">
           <motion.h1 className="text-8xl font-bold text-white">
             SYNC RETREAT.
@@ -67,7 +68,7 @@ export default function Hero() {
       repeat: Infinity,
       ease: "easeInOut",
     }}
-    className="pt-2"
+    className=""
   >
     <ChevronRight size={18} />
   </motion.div>
