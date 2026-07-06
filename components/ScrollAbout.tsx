@@ -7,7 +7,12 @@ import {
   useSpring,
 } from "framer-motion";
 import { useRef, useState } from "react";
-
+import {
+  ArrowUpRight,
+  Thermometer,
+  Droplets,
+  Mountain,
+} from "lucide-react";
 export default function About() {
   const ref = useRef(null);
   const hasStarted = useRef(false);
@@ -104,9 +109,89 @@ export default function About() {
           style={{scale: sunScale, opacity: headingOpacity}} >
           </motion.div>
         </div>
+        <div className="absolute left-10 bottom-10 z-30">
+  <div className="rounded-3xl border border-orange-400/20 bg-orange-800/30 backdrop-blur-xl px-8 py-6 shadow-2xl">
+
+    <p className="mb-5 text-xs uppercase tracking-[0.35em] text-white/70">
+      Live Conditions
+    </p>
+
+    <div className="grid grid-cols-3 gap-8">
+
+      {/* Altitude */}
+      <div>
+        <div className="mb-2 flex items-center gap-2 text-white/70">
+          <Mountain size={18} />
+          <span className="text-sm">Altitude</span>
+        </div>
+
+        <div className="flex items-center gap-2">
+          <p className="text-3xl font-semibold text-white">
+            3,524m
+          </p>
+
+          <ArrowUpRight
+            size={18}
+            className="text-green-400"
+          />
+        </div>
+      </div>
+
+      {/* Temperature */}
+      <div>
+        <div className="mb-2 flex items-center gap-2 text-white/70">
+          <Thermometer size={18} />
+          <span className="text-sm">Temperature</span>
+        </div>
+
+        <div className="flex items-center gap-2">
+          <p className="text-3xl font-semibold text-white">
+            14°C
+          </p>
+
+          <ArrowUpRight
+            size={18}
+            className="text-orange-300"
+          />
+        </div>
+      </div>
+
+      {/* Humidity */}
+      <div>
+        <div className="mb-2 flex items-center gap-2 text-white/70">
+          <Droplets size={18} />
+          <span className="text-sm">Humidity</span>
+        </div>
+
+        <div className="flex items-center gap-2">
+          <p className="text-3xl font-semibold text-white">
+            32%
+          </p>
+
+          <ArrowUpRight
+            size={18}
+            className="text-cyan-300"
+          />
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+        <div className="">
+        <motion.img
+        style={{
+          y: headingY,
+        }}
+          className="absolute top-0 left-0 bottom-0 right-0 z-10 h-[100vh] w-full"
+          //  src="https://media.istockphoto.com/id/1316556788/vector/simple-color-vector-drawing-in-flat-style-mountain-range-rocky-panoramic-landscape-nature.jpg?s=170667a&w=0&k=20&c=dKBX31q44XIcTXK3UrFjuy_MMbKviZnGK_TjXE_yS34="/>
+          src="/assets/mountain.png"
+/>
+<div className="absolute  left-0 bottom-0 w-full h-[25vh] bg-[#313b16]" />
+        </div>
         {/* Heading */}
         <motion.div
-          className="absolute inset-0  flex items-center justify-center"
+          className="absolute inset-0  flex items-center justify-center z-10"
           style={{
             y: headingY,
             opacity: headingOpacity,
@@ -145,7 +230,7 @@ export default function About() {
               scale: leftForestScale,
               x: leftForestX,
               scaleX: -1,
-              opacity: headingOpacity,
+              opacity: 1,
             }}
           />
 
@@ -155,7 +240,7 @@ export default function About() {
             className="absolute bottom-0 right-0 h-full w-auto object-contain origin-bottom-right"
             style={{
               scale: rightForestScale,
-              opacity: headingOpacity,
+              opacity: 1,
             }}
           />
         </div>

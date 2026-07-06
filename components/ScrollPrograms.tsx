@@ -8,24 +8,28 @@ const programs = [
     title: "Execution Block 01",
     description:
       "Structured focus blocks. Teams define their milestone on day one and execute toward it daily.",
+    image: "https://images.openai.com/static-rsc-4/O-nqHq_UQvFLn_E9SpINR1UsJogYh31CtLbQAsJNxevpS4ydxTmUd3D3qL0Q1D1Q4PtI3yzWKgkp6-l0i2e3SeDNDeZuI43TDJvdgehz1HZ2Gctv8kaB4mw8vemoCOVkl0djy7X57fmaAtuD64q7SLjdhVFVdjfDQKF0yzMX4oQ?purpose=inline"
   },
   {
     day: "DAY 06–10",
     title: "Execution Block 02",
     description:
       "Daily mentor reviews, accountability checkpoints and focused execution sessions.",
+    image: "https://images.openai.com/static-rsc-4/niNs8Bia8HL_gnszWIEA-ORyEveViA4oRZPhDm4gNrBPbc4TEAYqG6p198Lih0DalHIEHmIL8sjSneiWwb6eheOV81C0BfhtnAok1-5YnyjXScGu-7KQr-LK3TjHUicxK_743sgGREobIS6NFk8XZaB8GSO31sqXmJFEpaf0ysxLLrqlOp8A5w5xtwmvMzjB?purpose=fullsize"
   },
   {
     day: "DAY 11–15",
     title: "Execution Block 03",
     description:
       "Customer conversations, product iteration and rapid feedback cycles to validate ideas.",
-  },
-  {
-    day: "DAY 16–20",
-    title: "Execution Block 04",
-    description:
+      image: "https://images.openai.com/static-rsc-4/5VVr8VBHeDlw7OSzUhJ6HfXL6ghiOjolCoyBpfqEDRWMV4bhuobtjebh81dew9ug9AlLfnOri6zj6zgKfllmS0lHSi2EGUPrXaG_VfZeP_fQoGTjxSRmOei7Svm-i7Zitzrhn9xxtXqIfXgc76Z85vv3f-2tfaXCzA_fDIT2ulPQZKCqIFjsyYrOubMCxbW3?purpose=fullsize"
+    },
+    {
+      day: "DAY 16–20",
+      title: "Execution Block 04",
+      description:
       "Final sprint, demo preparation and roadmap planning for the next phase of growth.",
+      image:"https://images.openai.com/static-rsc-4/TzYJ9XzExkMHkuzlRirZrJlxJOZUpeiJc4_IYkLEMIJoQfkQppDjoC4-vUrHNDbnOCtDrAl_b-wQTIRQt8CoGlcwo3g-NgcfAfNsjg1DX-F4uZUFmRO_jen4wLZuvN1n60NHqdgcGmzght3Ri7rPHVGHtDsVV3DuI2NHmgrEjpk?purpose=inline"
   },
 ];
 
@@ -106,30 +110,44 @@ const introY = useTransform(
       </motion.div>
     </motion.div>
 
-<div className="relative col-span-8 overflow-hidden bg-orange-300">
+<div className="relative col-span-8 overflow-hidden bg-white">
 
-  {/* Continuous timeline */}
-  <div className="absolute top-12 left-0 right-0 h-px bg-white z-0" />
+  {/* Background Image */}
+  <motion.img
+    key={activeIndex}
+    src={programs[activeIndex].image}
+    initial={{ opacity: 0, scale: 1.05 }}
+    animate={{ opacity: 1, scale: 1 }}
+    transition={{ duration: 0.7 }}
+    className="absolute inset-0 h-full w-full object-cover"
+  />
 
+  {/* Overlay */}
+  <div className="absolute inset-0 bg-black/40 z-0" />
+
+  {/* Timeline Line */}
+  <div className="absolute top-12 left-0 right-0 h-px bg-white/40 z-10" />
+
+  {/* Timeline */}
   <motion.div
     style={{ x: timelineX }}
-    className="relative z-10 flex items-start gap-12 pl-[20vw] pt-5"
+    className="relative z-20 flex items-start gap-12 pl-[20vw] pt-5"
   >
     {programs.map((item, index) => (
       <div
         key={index}
         className="w-[34vw] shrink-0"
       >
-        {/* Timeline marker */}
-        <div className="flex justify-center mb-10">
+        {/* Timeline Marker */}
+        <div className="mb-10 flex justify-center">
           <div className="flex h-14 w-14 items-center justify-center rounded-full bg-white">
-            < div className="bg-orange-400 w-5 h-5 rounded-full " />
+            <div className="h-5 w-5 rounded-full bg-orange-300" />
           </div>
         </div>
 
         {/* Card */}
         <motion.div
-          className="rounded-xl bg-white p-10 text-zinc-900 shadow-lg"
+          className="rounded-xl bg-white p-10 text-zinc-900 shadow-2xl"
           animate={{
             scale: activeIndex === index ? 1.08 : 0.95,
             opacity: activeIndex === index ? 1 : 0.6,

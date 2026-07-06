@@ -63,7 +63,7 @@ useMotionValueEvent(scrollYProgress, "change", (latest) => {
 <section ref={receiptRef} className="relative h-[350vh]">
   <motion.div className="sticky top-0 h-screen w-full max-w-2xl mx-auto bg-white">
         {/* Header */}
-        <div className="border-b border-dashed border-stone-300 pb-6 pt-5 text-center">
+        <div className="border-b border-dashed border-stone-300 pb-6 pt-10 mb-20 text-center">
           <h1 className="text-3xl font-bold tracking-[0.3em] text-stone-900">
             EXPEDITION
           </h1>

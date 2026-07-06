@@ -2,6 +2,7 @@
 
 import ExpeditionReceipt from "@/components/BookingCard";
 import About from "@/components/ScrollAbout";
+import ScrollGallery from "@/components/ScrollGallery";
 import ScrollHorizontal from "@/components/ScrollHorizontal";
 import Programs from "@/components/ScrollPrograms";
 import Hero from "@/components/ScrollZoomHero";
@@ -35,6 +36,7 @@ export default function Home() {
      <About />
      <Programs/>
      <ExpeditionReceipt />
+     <ScrollGallery />
       {/* <section className="panel sticky top-0 z-40 flex h-screen items-center justify-center bg-zinc-700 text-6xl font-bold text-white">
         Section 3
       </section> */}

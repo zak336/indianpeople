@@ -8,6 +8,18 @@ const nextConfig: NextConfig = {
         protocol:"https",
         hostname:"picsum.photos"
       },
+      {
+        protocol: "https",
+        hostname:"images.openai"
+      },
+      {
+        protocol:"https",
+        hostname:"png.pngtree",
+      },
+      {
+        protocol:"https",
+        hostname:"img.freepik"
+      }
     ],
   },
 };
