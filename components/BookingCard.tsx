@@ -3,7 +3,14 @@
 import { motion, MotionValue, useMotionValueEvent, useScroll, useTransform } from "framer-motion";
 import { useRef, useState } from "react";
 
-function ReceiptRow({ title, value, subtitle, progress, start }) {
+interface Item {
+title: any,
+value: any,
+subtitle: any,
+progress: any,
+start: any
+}
+function ReceiptRow({ title, value, subtitle, progress, start }: Item) {
   const x = useTransform(progress, [start, start + 0.12], [-120, 0]);
   const opacity = useTransform(progress, [start, start + 0.12], [0, 1]);
 
