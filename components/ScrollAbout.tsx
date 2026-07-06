@@ -184,7 +184,7 @@ export default function About() {
           y: headingY,
         }}
           className="absolute top-0 left-0 bottom-0 right-0 z-10 h-[100vh] w-full"
-          //  src="https://media.istockphoto.com/id/1316556788/vector/simple-color-vector-drawing-in-flat-style-mountain-range-rocky-panoramic-landscape-nature.jpg?s=170667a&w=0&k=20&c=dKBX31q44XIcTXK3UrFjuy_MMbKviZnGK_TjXE_yS34="/>
+          alt="Mountain range panoramic landscape in Leh, Ladakh"
           src="/assets/mountain.png"
 />
 <div className="absolute  left-0 bottom-0 w-full h-[25vh] bg-[#313b16]" />
@@ -225,6 +225,7 @@ export default function About() {
           {/* Left */}
           <motion.img
             src="/assets/forest.png"
+            alt="Forest silhouette landscape in Ladakh mountains"
             className="absolute bottom-[-15%] left-[-10%] h-full w-auto object-contain"
             style={{
               scale: leftForestScale,
@@ -237,6 +238,7 @@ export default function About() {
           {/* Right */}
           <motion.img
             src="/assets/forest.png"
+            alt="Forest landscape at high altitude in Ladakh"
             className="absolute bottom-0 right-0 h-full w-auto object-contain origin-bottom-right"
             style={{
               scale: rightForestScale,

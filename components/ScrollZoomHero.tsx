@@ -33,6 +33,7 @@ export default function Hero() {
     <section className="sticky top-0 h-screen overflow-hidden">
       <motion.img
         src="/assets/hero.jpeg"
+        alt="Sync Retreat - Mountain landscape in Leh, Ladakh at 3,524m altitude"
         className="w-full h-full object-cover"
         style={{
           scale,
@@ -58,6 +59,7 @@ export default function Hero() {
   whileTap={{ scale: 0.95 }}
   style={{ background: "var(--copper)" }}
   className="px-8 py-3 rounded-full flex items-center gap-2 text-white font-medium cursor-pointer"
+  aria-label="Reserve your seat for the 14-day founder retreat program"
 >
   <span>Reserve seat</span>
 

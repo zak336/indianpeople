@@ -116,6 +116,7 @@ const introY = useTransform(
   <motion.img
     key={activeIndex}
     src={programs[activeIndex].image}
+    alt={`${programs[activeIndex].title} - ${programs[activeIndex].description}`}
     initial={{ opacity: 0, scale: 1.05 }}
     animate={{ opacity: 1, scale: 1 }}
     transition={{ duration: 0.7 }}
