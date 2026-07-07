@@ -1,6 +1,6 @@
 import { motion, useMotionValueEvent, useScroll, useTransform } from "framer-motion";
 import { ChevronRight } from "lucide-react";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 
 const MotionImage = motion(Image);
@@ -58,7 +58,16 @@ const timelineX = useTransform(
   step,
   (v) => `${v * 40}vw`
 );
-const [activeIndex, setActiveIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 768);
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const [activeIndex, setActiveIndex] = useState(0);
 
 useMotionValueEvent(scrollYProgress, "change", (latest) => {
   if (latest < 0.45) {
@@ -88,30 +97,30 @@ const introY = useTransform(
     >
   <section className="sticky top-0 h-screen overflow-hidden ">
 
-  <div className="grid h-full grid-cols-12">
+  <div className="grid h-full grid-cols-1 md:grid-cols-12">
 
     {/* LEFT SIDE */}
     <motion.div
-      className="col-span-4 flex items-center px-16 bg-white/[0.08] backdrop-blur-2xl border-r border-y border-white/15 shadow-[25px_0_50px_-12px_rgba(0,0,0,0.5)] pt-20"
+      className="col-span-1 md:col-span-4 flex items-center px-6 sm:px-12 md:px-16 bg-white/[0.08] backdrop-blur-2xl border-b md:border-r border-white/15 shadow-[25px_0_50px_-12px_rgba(0,0,0,0.5)] pt-12 pb-8 md:py-20"
     >
       <motion.div className="max-w-md"       style={{
-        y: introY,
+        y: isMobile ? 0 : introY,
       }}>
         <p className="font-mono text-xs font-bold uppercase tracking-[0.3em] text-copper">
           THE WORKFLOW
         </p>
 
-        <h2 className="mt-6 text-5xl font-serif font-medium tracking-tight leading-tight text-white">
+        <h2 className="mt-4 md:mt-6 text-3xl sm:text-4xl md:text-5xl font-serif font-medium tracking-tight leading-tight text-white">
         Built for execution — not tourism.
         </h2>
 
-        <p className="mt-8 text-sm md:text-base font-sans leading-relaxed text-zinc-300">
+        <p className="mt-4 md:mt-8 text-xs sm:text-sm md:text-base font-sans leading-relaxed text-zinc-300">
           Four simple stages to reserve, align, arrive, and ship. We handle 100% of your logistical surface area so that your output is the only variable left.
         </p>
       </motion.div>
     </motion.div>
 
-<div className="relative col-span-8 overflow-hidden bg-white">
+<div className="relative col-span-1 md:col-span-8 overflow-hidden bg-white min-h-[50vh] md:min-h-0">
 
   {/* Background Image */}
   <MotionImage
@@ -136,12 +145,12 @@ const introY = useTransform(
   {/* Timeline */}
   <motion.div
     style={{ x: timelineX }}
-    className="relative z-20 flex items-start gap-12 pl-[20vw] pt-5"
+    className="relative z-20 flex items-start gap-6 md:gap-12 pl-[8vw] md:pl-[20vw] pt-5"
   >
     {programs.map((item, index) => (
       <div
         key={index}
-        className="w-[34vw] shrink-0"
+        className="w-[72vw] sm:w-[50vw] md:w-[34vw] shrink-0"
       >
         {/* Timeline Marker */}
         <div className="mb-10 flex justify-center">
@@ -152,9 +161,9 @@ const introY = useTransform(
 
         {/* Card */}
         <motion.div
-          className="rounded-xl bg-white p-10 text-zinc-900 shadow-2xl"
+          className="rounded-xl bg-white p-6 md:p-10 text-zinc-900 shadow-2xl"
           animate={{
-            scale: activeIndex === index ? 1.08 : 0.95,
+            scale: activeIndex === index ? 1.05 : 0.95,
             opacity: activeIndex === index ? 1 : 0.6,
           }}
           transition={{
@@ -163,15 +172,15 @@ const introY = useTransform(
             damping: 25,
           }}
         >
-          <p className="text-xl font-bold uppercase tracking-[0.35em] text-[var(--copper)]">
+          <p className="text-sm md:text-xl font-bold uppercase tracking-[0.35em] text-[var(--copper)]">
             {item.day}
           </p>
 
-          <h2 className="mt-4 text-3xl font-semibold">
+          <h2 className="mt-2 md:mt-4 text-xl md:text-3xl font-semibold">
             {item.title}
           </h2>
 
-          <p className="mt-6 text-lg leading-8 text-zinc-700">
+          <p className="mt-3 md:mt-6 text-xs md:text-lg leading-relaxed text-zinc-700">
             {item.description}
           </p>
         </motion.div>
