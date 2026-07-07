@@ -115,7 +115,7 @@ export default function About() {
             </div>
 
             {/* Tab Controls */}
-            <div className="flex flex-nowrap gap-1 md:gap-2 border border-stone-200 p-1 rounded-full bg-stone-50 shrink-0 self-start md:self-end overflow-x-auto whitespace-nowrap max-w-full">
+            <div className="flex flex-nowrap gap-1 md:gap-2 border border-stone-200 p-1 rounded-full bg-stone-50 shrink-0 self-start md:self-end overflow-hidden whitespace-nowrap max-w-full">
               {features.map((feature, idx) => {
                 const isActive = activeTab === idx;
                 return (
