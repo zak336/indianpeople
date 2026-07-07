@@ -10,7 +10,6 @@ import Footer from "@/components/Footer";
 import PlacesToSee from "@/components/PlacesToSee";
 import Coliving from "@/components/Coliving";
 import Scheduler from "@/components/Scheduler";
-import Community from "@/components/Community";
 import { useEffect } from "react";
 
 export default function Home() {
@@ -134,7 +133,6 @@ export default function Home() {
         <About />
         <Coliving />
         <Programs/>
-        <Community />
         <PlacesToSee />
         <Scheduler />
         <ScrollGallery />
