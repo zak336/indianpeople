@@ -1,36 +1,39 @@
 import { motion, useMotionValueEvent, useScroll, useTransform } from "framer-motion";
 import { ChevronRight } from "lucide-react";
 import { useRef, useState } from "react";
+import Image from "next/image";
+
+const MotionImage = motion(Image);
 
 const programs = [
   {
-    day: "DAY 01–05",
-    title: "Execution Block 01",
+    day: "STEP 01",
+    title: "1. Reserve Seat",
     description:
-      "Structured focus blocks. Teams define their milestone on day one and execute toward it daily.",
-    image: "https://images.openai.com/static-rsc-4/O-nqHq_UQvFLn_E9SpINR1UsJogYh31CtLbQAsJNxevpS4ydxTmUd3D3qL0Q1D1Q4PtI3yzWKgkp6-l0i2e3SeDNDeZuI43TDJvdgehz1HZ2Gctv8kaB4mw8vemoCOVkl0djy7X57fmaAtuD64q7SLjdhVFVdjfDQKF0yzMX4oQ?purpose=inline"
+      "Secure your place with a ₹25,000 deposit. Fully refundable up to 30 days before cohort start.",
+    image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=1470&auto=format&fit=crop"
   },
   {
-    day: "DAY 06–10",
-    title: "Execution Block 02",
+    day: "STEP 02",
+    title: "2. Match Cohort",
     description:
-      "Daily mentor reviews, accountability checkpoints and focused execution sessions.",
-    image: "https://images.openai.com/static-rsc-4/niNs8Bia8HL_gnszWIEA-ORyEveViA4oRZPhDm4gNrBPbc4TEAYqG6p198Lih0DalHIEHmIL8sjSneiWwb6eheOV81C0BfhtnAok1-5YnyjXScGu-7KQr-LK3TjHUicxK_743sgGREobIS6NFk8XZaB8GSO31sqXmJFEpaf0ysxLLrqlOp8A5w5xtwmvMzjB?purpose=fullsize"
+      "Get matched to cohort dates and confirm your defined deliverable/goal. We align squads around clear shipped targets.",
+    image: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?q=80&w=1468&auto=format&fit=crop"
   },
   {
-    day: "DAY 11–15",
-    title: "Execution Block 03",
+    day: "STEP 03",
+    title: "3. Arrive & Focus",
     description:
-      "Customer conversations, product iteration and rapid feedback cycles to validate ideas.",
-      image: "https://images.openai.com/static-rsc-4/5VVr8VBHeDlw7OSzUhJ6HfXL6ghiOjolCoyBpfqEDRWMV4bhuobtjebh81dew9ug9AlLfnOri6zj6zgKfllmS0lHSi2EGUPrXaG_VfZeP_fQoGTjxSRmOei7Svm-i7Zitzrhn9xxtXqIfXgc76Z85vv3f-2tfaXCzA_fDIT2ulPQZKCqIFjsyYrOubMCxbW3?purpose=fullsize"
+      "Arrive in Ladakh. Your infrastructure, single-occupancy workspace, private room, and meals are handled from day one.",
+      image: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=1421&auto=format&fit=crop"
     },
     {
-      day: "DAY 16–20",
-      title: "Execution Block 04",
+      day: "STEP 04",
+      title: "4. Ship & Leave",
       description:
-      "Final sprint, demo preparation and roadmap planning for the next phase of growth.",
-      image:"https://images.openai.com/static-rsc-4/TzYJ9XzExkMHkuzlRirZrJlxJOZUpeiJc4_IYkLEMIJoQfkQppDjoC4-vUrHNDbnOCtDrAl_b-wQTIRQt8CoGlcwo3g-NgcfAfNsjg1DX-F4uZUFmRO_jen4wLZuvN1n60NHqdgcGmzght3Ri7rPHVGHtDsVV3DuI2NHmgrEjpk?purpose=inline"
-  },
+        "Focus entirely on your deliverable with zero distraction. Leave on day 14 with your milestone fully shipped.",
+      image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1471&auto=format&fit=crop"
+    },
 ];
 
 export default function Programs() {
@@ -80,6 +83,7 @@ const introY = useTransform(
   return (
     <div
       ref={ref}
+      id="programs"
       className="relative h-[500vh] bg-[var(--copper)] text-white"
     >
   <section className="sticky top-0 h-screen overflow-hidden ">
@@ -88,24 +92,21 @@ const introY = useTransform(
 
     {/* LEFT SIDE */}
     <motion.div
-
-      className="col-span-4 flex items-center px-16 bg-orange-700/50 pt-20"
+      className="col-span-4 flex items-center px-16 bg-white/[0.08] backdrop-blur-2xl border-r border-y border-white/15 shadow-[25px_0_50px_-12px_rgba(0,0,0,0.5)] pt-20"
     >
       <motion.div className="max-w-md"       style={{
         y: introY,
       }}>
-        <p className="font-bold uppercase tracking-[0.3em] ">
-          PROGRAM
+        <p className="font-mono text-xs font-bold uppercase tracking-[0.3em] text-copper">
+          THE WORKFLOW
         </p>
 
-        <h2 className="mt-6 text-5xl font-semibold leading-tight">
-        built for output — not itinerary.
+        <h2 className="mt-6 text-5xl font-serif font-medium tracking-tight leading-tight text-white">
+        Built for execution — not tourism.
         </h2>
 
-        <p className="mt-8 text-2xl leading-8 text-white">
-          A fixed execution window for early-stage founding teams.
-          Commercial-grade internet, redundant power and ergonomic
-          workstations engineered for uninterrupted focus.
+        <p className="mt-8 text-sm md:text-base font-sans leading-relaxed text-zinc-300">
+          Four simple stages to reserve, align, arrive, and ship. We handle 100% of your logistical surface area so that your output is the only variable left.
         </p>
       </motion.div>
     </motion.div>
@@ -113,14 +114,17 @@ const introY = useTransform(
 <div className="relative col-span-8 overflow-hidden bg-white">
 
   {/* Background Image */}
-  <motion.img
+  <MotionImage
     key={activeIndex}
     src={programs[activeIndex].image}
     alt={`${programs[activeIndex].title} - ${programs[activeIndex].description}`}
     initial={{ opacity: 0, scale: 1.05 }}
     animate={{ opacity: 1, scale: 1 }}
     transition={{ duration: 0.7 }}
-    className="absolute inset-0 h-full w-full object-cover"
+    fill
+    unoptimized
+    className="object-cover"
+    sizes="50vw"
   />
 
   {/* Overlay */}

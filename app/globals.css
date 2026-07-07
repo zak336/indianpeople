@@ -6,13 +6,17 @@
   --copper: #ff7002ce;
   --copper-dark: #ff7002e0;
   --basalt: #15171A;
+  scroll-behavior: smooth;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-copper: var(--copper);
+  --color-copper-dark: var(--copper-dark);
+  --font-sans: var(--font-inter), sans-serif;
+  --font-serif: var(--font-playfair), serif;
+  --font-mono: var(--font-outfit), monospace;
 }
 
 @media (prefers-color-scheme: dark) {

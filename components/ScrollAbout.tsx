@@ -1,252 +1,182 @@
-import {
-  animate,
-  motion,
-  useMotionValueEvent,
-  useScroll,
-  useTransform,
-  useSpring,
-} from "framer-motion";
+"use client";
 import { useRef, useState } from "react";
-import {
-  ArrowUpRight,
-  Thermometer,
-  Droplets,
-  Mountain,
-} from "lucide-react";
+import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
+import Image from "next/image";
+
 export default function About() {
-  const ref = useRef(null);
-  const hasStarted = useRef(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [activeTab, setActiveTab] = useState(0);
 
   const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end end"],
+    target: containerRef,
+    offset: ["start start", "end end"]
   });
 
-  const [timer, setTimer] = useState(0);
-
-  // -----------------------------
-  // Timeline Phases
-  // -----------------------------
-  const intro = useTransform(scrollYProgress, [0, 0.25], [0, 1]);
-  const forest = useTransform(scrollYProgress, [0.15, 0.7], [0, 0.75]);
-  const outro = useTransform(scrollYProgress, [0.75, 1], [0, 1]);
-  const sunScale = useTransform(scrollYProgress, [0, 1], [1.5, 1]);
-  // -----------------------------
-  // Heading
-  // -----------------------------
-  const headingY = useSpring(
-    useTransform(intro, [0, 1], [0, -80]),
-    {
-      stiffness: 90,
-      damping: 20,
-    }
-  );
-
-  const headingOpacity = useSpring(
-    useTransform(outro, [0, 1], [1, 0.8]),
-    {
-      stiffness: 90,
-      damping: 20,
-    }
-  );
-
-  const headingScale = useSpring(
-    useTransform(outro, [0, 1], [1, 0.9]),
-    {
-      stiffness: 90,
-      damping: 20,
-    }
-  );
-
-  // -----------------------------
-  // Forest
-  // -----------------------------
-  const leftForestScale = useSpring(
-    useTransform(forest, [0, 1], [1.35, 0.7]),
-    {
-      stiffness: 90,
-      damping: 20,
-    }
-  );
-
-  const rightForestScale = useSpring(
-    useTransform(forest, [0, 1], [1.15, 0.7]),
-    {
-      stiffness: 90,
-      damping: 20,
-    }
-  );
-
-  const leftForestX = useSpring(
-    useTransform(forest, [0, 1], [0, -120]),
-    {
-      stiffness: 90,
-      damping: 20,
-    }
-  );
-
-  // -----------------------------
-  // Timer Animation
-  // -----------------------------
+  // Track scroll progress to update active tab state
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    if (latest > 0.02 && !hasStarted.current) {
-      hasStarted.current = true;
-
-      animate(0, 14, {
-        duration: 3,
-        onUpdate(value) {
-          setTimer(Math.round(value));
-        },
-      });
+    if (latest < 0.25) {
+      setActiveTab(0);
+    } else if (latest >= 0.25 && latest < 0.50) {
+      setActiveTab(1);
+    } else if (latest >= 0.50 && latest < 0.75) {
+      setActiveTab(2);
+    } else {
+      setActiveTab(3);
     }
   });
+
+  // Handle smooth scroll when clicking on a tab
+  const handleTabClick = (idx: number) => {
+    if (!containerRef.current) return;
+    const container = containerRef.current;
+    const rect = container.getBoundingClientRect();
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const containerTop = rect.top + scrollTop;
+    const scrollRange = container.scrollHeight - window.innerHeight;
+
+    let targetProgress = 0;
+    if (idx === 0) targetProgress = 0.05;
+    else if (idx === 1) targetProgress = 0.375;
+    else if (idx === 2) targetProgress = 0.625;
+    else if (idx === 3) targetProgress = 0.875;
+
+    window.scrollTo({
+      top: containerTop + (targetProgress * scrollRange),
+      behavior: "smooth"
+    });
+  };
+
+  // Slide transitions (Right to Left)
+  const x0 = useTransform(scrollYProgress, [0, 0.20, 0.30, 1], ["0%", "0%", "-100%", "-100%"]);
+  const opacity0 = useTransform(scrollYProgress, [0, 0.20, 0.30, 1], [1, 1, 0, 0]);
+
+  const x1 = useTransform(scrollYProgress, [0, 0.20, 0.30, 0.45, 0.55, 1], ["100%", "100%", "0%", "0%", "-100%", "-100%"]);
+  const opacity1 = useTransform(scrollYProgress, [0, 0.20, 0.30, 0.45, 0.55, 1], [0, 0, 1, 1, 0, 0]);
+
+  const x2 = useTransform(scrollYProgress, [0, 0.45, 0.55, 0.70, 0.80, 1], ["100%", "100%", "0%", "0%", "-100%", "-100%"]);
+  const opacity2 = useTransform(scrollYProgress, [0, 0.45, 0.55, 0.70, 0.80, 1], [0, 0, 1, 1, 0, 0]);
+
+  const x3 = useTransform(scrollYProgress, [0, 0.70, 0.80, 1], ["100%", "100%", "0%", "0%"]);
+  const opacity3 = useTransform(scrollYProgress, [0, 0.70, 0.80, 1], [0, 0, 1, 1]);
+
+  const features = [
+    {
+      tabLabel: "The Problem",
+      title: "Your best work doesn't happen in the noise.",
+      description: "Your best work doesn't happen between Slack pings, co-working noise, and a city that never turns off. You don't need a vacation. You need 14 days where the only variable left is your output.",
+      image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1470&auto=format&fit=crop",
+      x: x0,
+      opacity: opacity0,
+      index: "01"
+    },
+    {
+      tabLabel: "Villa & Workspace",
+      title: "A Private Villa & Workspace",
+      description: "A single-occupancy workspace and private room. Designed as a personal sanctuary optimized for deep rest, hot showers, and absolute privacy.",
+      image: "https://a0.muscache.com/im/pictures/hosting/Hosting-1138245562661282426/original/f218e700-8949-4ab8-ade7-8196d4fa5e8c.jpeg?im_w=1440",
+      x: x1,
+      opacity: opacity1,
+      index: "02"
+    },
+    {
+      tabLabel: "Redundant Fiber",
+      title: "Dual-WAN Redundant Fiber",
+      description: "Commercial-grade Starlink + Local Fiber backup and dedicated generators to ensure zero downtime and verified uptime at 3,524m altitude.",
+      image: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=1470&auto=format&fit=crop",
+      x: x2,
+      opacity: opacity2,
+      index: "03"
+    },
+    {
+      tabLabel: "Curated Cohort",
+      title: "Curated Cohort & Zero Itinerary",
+      description: "A vetted cohort of 10-15 founders and operators. Zero itinerary. Zero 'team bonding' exercises. Pure deep-work architecture to get your milestone shipped.",
+      image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1470&auto=format&fit=crop",
+      x: x3,
+      opacity: opacity3,
+      index: "04"
+    }
+  ];
 
   return (
-    <div ref={ref} className="relative h-[350vh]">
-      <section className="sticky top-0 h-screen overflow-hidden bg-white">
-        <div className="absolute p-20 left-0 top-0">
-          <motion.div className="h-30 w-30 rounded-full bg-orange-400"
-          style={{scale: sunScale, opacity: headingOpacity}} >
-          </motion.div>
-        </div>
-        <div className="absolute left-10 bottom-10 z-30">
-  <div className="rounded-3xl border border-orange-400/20 bg-orange-800/30 backdrop-blur-xl px-8 py-6 shadow-2xl">
-
-    <p className="mb-5 text-xs uppercase tracking-[0.35em] text-white/70">
-      Live Conditions
-    </p>
-
-    <div className="grid grid-cols-3 gap-8">
-
-      {/* Altitude */}
-      <div>
-        <div className="mb-2 flex items-center gap-2 text-white/70">
-          <Mountain size={18} />
-          <span className="text-sm">Altitude</span>
-        </div>
-
-        <div className="flex items-center gap-2">
-          <p className="text-3xl font-semibold text-white">
-            3,524m
-          </p>
-
-          <ArrowUpRight
-            size={18}
-            className="text-green-400"
-          />
-        </div>
-      </div>
-
-      {/* Temperature */}
-      <div>
-        <div className="mb-2 flex items-center gap-2 text-white/70">
-          <Thermometer size={18} />
-          <span className="text-sm">Temperature</span>
-        </div>
-
-        <div className="flex items-center gap-2">
-          <p className="text-3xl font-semibold text-white">
-            14°C
-          </p>
-
-          <ArrowUpRight
-            size={18}
-            className="text-orange-300"
-          />
-        </div>
-      </div>
-
-      {/* Humidity */}
-      <div>
-        <div className="mb-2 flex items-center gap-2 text-white/70">
-          <Droplets size={18} />
-          <span className="text-sm">Humidity</span>
-        </div>
-
-        <div className="flex items-center gap-2">
-          <p className="text-3xl font-semibold text-white">
-            32%
-          </p>
-
-          <ArrowUpRight
-            size={18}
-            className="text-cyan-300"
-          />
-        </div>
-      </div>
-
-    </div>
-  </div>
-</div>
-        <div className="">
-        <motion.img
-        style={{
-          y: headingY,
-        }}
-          className="absolute top-0 left-0 bottom-0 right-0 z-10 h-[100vh] w-full"
-          alt="Mountain range panoramic landscape in Leh, Ladakh"
-          src="/assets/mountain.png"
-/>
-<div className="absolute  left-0 bottom-0 w-full h-[25vh] bg-[#313b16]" />
-        </div>
-        {/* Heading */}
-        <motion.div
-          className="absolute inset-0  flex items-center justify-center z-10"
-          style={{
-            y: headingY,
-            opacity: headingOpacity,
-            scale: headingScale,
-          }}
-        >
-          <div className="text-center max-w-4xl">
-            <div className="flex items-end justify-center gap-2">
-              <h2 className="text-8xl font-bold text-green-800">
-                {timer}
-              </h2>
-
-              <span className="text-7xl">
-                days.
+    <section ref={containerRef} id="about" className="relative z-10 h-[400vh] bg-white text-zinc-900">
+      <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-center py-16">
+        
+        {/* Header & Tabs Container */}
+        <div className="max-w-7xl mx-auto w-full px-6 md:px-12 lg:px-24 mb-10 shrink-0">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
+            <div className="max-w-2xl">
+              <span className="text-xs font-mono tracking-[0.4em] text-[var(--copper)] uppercase mb-2 block">
+                DEEP WORK ARCHITECTURE
               </span>
+              <h2 className="text-3xl md:text-5xl font-serif font-medium tracking-tight">
+                You don't need a vacation. You need 14 days of focus.
+              </h2>
             </div>
 
-            <p className="mt-6 text-7xl">
-              Zero infrastructure risk.
-            </p>
-
-            <p className="text-7xl">
-              One shipped milestone.
-            </p>
+            {/* Tab Controls */}
+            <div className="flex flex-wrap gap-2 md:gap-3 border border-stone-200 p-1.5 rounded-full bg-stone-50 shrink-0 self-start md:self-end">
+              {features.map((feature, idx) => {
+                const isActive = activeTab === idx;
+                return (
+                  <button
+                    key={idx}
+                    onClick={() => handleTabClick(idx)}
+                    className={`relative px-4 py-2 text-xs font-mono uppercase tracking-wider rounded-full cursor-pointer transition-colors duration-300 ${
+                      isActive ? "text-white" : "text-zinc-500 hover:text-zinc-900"
+                    }`}
+                  >
+                    {isActive && (
+                      <motion.div
+                        layoutId="activeAboutTab"
+                        className="absolute inset-0 bg-copper rounded-full z-0"
+                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                      />
+                    )}
+                    <span className="relative z-10">{feature.tabLabel}</span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
-        </motion.div>
-
-        {/* Forest */}
-        <div className="absolute inset-0 z-10 pointer-events-none">
-
-          {/* Left */}
-          <motion.img
-            src="/assets/forest.png"
-            alt="Forest silhouette landscape in Ladakh mountains"
-            className="absolute bottom-[-15%] left-[-10%] h-full w-auto object-contain"
-            style={{
-              scale: leftForestScale,
-              x: leftForestX,
-              scaleX: -1,
-              opacity: 1,
-            }}
-          />
-
-          {/* Right */}
-          <motion.img
-            src="/assets/forest.png"
-            alt="Forest landscape at high altitude in Ladakh"
-            className="absolute bottom-0 right-0 h-full w-auto object-contain origin-bottom-right"
-            style={{
-              scale: rightForestScale,
-              opacity: 1,
-            }}
-          />
+          <div className="w-full h-px bg-stone-200" />
         </div>
-      </section>
-    </div>
+
+        {/* Sliding Card Frame */}
+        <div className="relative flex-grow max-w-7xl mx-auto w-full px-6 md:px-12 lg:px-24 overflow-hidden h-[50vh]">
+          {features.map((item, idx) => (
+            <motion.div
+              key={idx}
+              style={{ x: item.x, opacity: item.opacity }}
+              className="absolute inset-x-6 md:inset-x-12 lg:inset-x-24 bottom-0 top-0 flex flex-col md:flex-row gap-12 items-center justify-between bg-white"
+            >
+              {/* Image Frame */}
+              <div className="w-full md:w-1/2 overflow-hidden rounded-3xl shadow-xl border border-zinc-100 shrink-0 relative h-64 md:h-[85%]">
+                <Image 
+                  src={item.image} 
+                  alt={item.title} 
+                  fill
+                  unoptimized
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              </div>
+
+              {/* Text content */}
+              <div className="w-full md:w-1/2 flex flex-col justify-center">
+                <span className="text-xs font-mono text-[var(--copper)] mb-2 uppercase tracking-[0.2em]">{item.index} // Sync Infrastructure</span>
+                <h3 className="text-2xl md:text-3xl font-serif font-bold text-zinc-900 mb-4">
+                  {item.title}
+                </h3>
+                <p className="text-zinc-600 font-sans text-sm md:text-base leading-relaxed">
+                  {item.description}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+      </div>
+    </section>
   );
 }

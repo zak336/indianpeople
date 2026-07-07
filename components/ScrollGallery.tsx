@@ -8,47 +8,50 @@ import {
   cubicBezier,
 } from "framer-motion";
 import { useMemo, useRef } from "react";
+import Image from "next/image";
+
+const MotionImage = motion(Image);
 
 const images = [
   {
-    src: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80",
-    title: "Pangong Tso",
-    subtitle: "Crystal blue alpine lake",
+    src: "https://images.unsplash.com/photo-1600242466690-c1c04f081762?q=80&w=1470&auto=format&fit=crop",
+    title: "Ladakh",
+    subtitle: "High Altitude Retreat",
   },
   {
-    src: "https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=1200&q=80",
-    title: "Nubra Valley",
-    subtitle: "Cold desert & sand dunes",
+    src: "https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?q=80&w=1447&auto=format&fit=crop&ixlib=rb-4.1.0",
+    title: "Deep Focus Co-Working hub.",
+    subtitle: "Ergonomic workstation",
   },
   {
-    src: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80",
-    title: "Leh",
-    subtitle: "Gateway to the Himalayas",
+    src: "https://media-cdn.tripadvisor.com/media/photo-s/06/9d/27/42/cold-desert-camp.jpg",
+    title: "Weekend Trips.",
+    subtitle: "High-altitude expeditions",
   },
   {
-    src: "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1200&q=80",
-    title: "Thiksey Monastery",
-    subtitle: "Ancient Buddhist heritage",
+    src: "https://a0.muscache.com/im/pictures/hosting/Hosting-1138245562661282426/original/f218e700-8949-4ab8-ade7-8196d4fa5e8c.jpeg?im_w=1440",
+    title: "Private Executive Quarters",
+    subtitle: "Private sanctuary",
   },
   {
-    src: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1200&q=80",
-    title: "Tso Moriri",
-    subtitle: "Peaceful high-altitude lake",
+    src: "https://charzanholidays.com/wp-content/uploads/2024/12/Thiksey_Monastery-ladakh_charzan_holidays.jpg",
+    title: "Weekend 1:",
+    subtitle: "Thiksey & Hemis monasteries",
   },
   {
-    src: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1200&q=80",
-    title: "Khardung La",
-    subtitle: "Legendary mountain pass",
+    src: "https://topclassholidays.com/wp-content/uploads/2025/07/Magnetic-Hill-Ladakh.jpg",
+    title: "Weekend 2:",
+    subtitle: "Magnetic Hill & Sangam",
   },
   {
-    src: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1200&q=80",
-    title: "Prayer Flags",
-    subtitle: "Spirit of Ladakh",
+    src: "https://www.eladakhtourism.com/camps-in-nubra/images/paramountcamp.jpg",
+    title: "Weekend 3:",
+    subtitle: "Khardung La Pass",
   },
   {
-    src: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80",
-    title: "Himalayan Retreat",
-    subtitle: "Reconnect with nature",
+    src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7IXjTKCvo8hReTEv1x5PrLXbQMsM5ZCfFZA&s",
+    title: "Weekend 4:",
+    subtitle: "Pangong Lake",
   },
 ];
 export default function ScrollGallery() {
@@ -86,6 +89,7 @@ const cards = images.map((_, i) => {
   return (
     <section
       ref={ref}
+      id="gallery"
       className="relative h-[350vh] bg-white-100"
     >
       <div className="sticky top-0 h-screen overflow-hidden flex items-center justify-center">
@@ -136,10 +140,13 @@ const blur = useTransform(
   ["8px", "0px"]
 );
           return (
-            <motion.img
+            <MotionImage
               key={i}
               src={images.src}
               alt=""
+              width={400}
+              height={360}
+              unoptimized
               drag
               dragElastic={0.15}
               whileHover={{

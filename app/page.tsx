@@ -1,11 +1,17 @@
 "use client";
 
-import ExpeditionReceipt from "@/components/BookingCard";
 import About from "@/components/ScrollAbout";
 import ScrollGallery from "@/components/ScrollGallery";
-import ScrollHorizontal from "@/components/ScrollHorizontal";
 import Programs from "@/components/ScrollPrograms";
 import Hero from "@/components/ScrollZoomHero";
+import FloatingNav from "@/components/FloatingNav";
+import FAQ from "@/components/FAQ";
+import Footer from "@/components/Footer";
+import PlacesToSee from "@/components/PlacesToSee";
+import Coliving from "@/components/Coliving";
+import Scheduler from "@/components/Scheduler";
+import Community from "@/components/Community";
+import BookingCard from "@/components/BookingCard";
 import { useEffect } from "react";
 
 export default function Home() {
@@ -123,15 +129,19 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(productData) }}
       />
+      <FloatingNav />
       <main>
         <Hero />
         <About />
+        <Coliving />
         <Programs/>
-        <ExpeditionReceipt />
+        <Community />
+        <PlacesToSee />
+        <Scheduler />
+        <BookingCard />
         <ScrollGallery />
-        {/* <section className="panel sticky top-0 z-40 flex h-screen items-center justify-center bg-zinc-700 text-6xl font-bold text-white">
-          Section 3
-        </section> */}
+        <FAQ />
+        <Footer />
       </main>
     </>
   );
