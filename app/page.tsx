@@ -131,10 +131,10 @@ export default function Home() {
       <main>
         <Hero />
         <About />
+        <Scheduler />
         <Coliving />
         <Programs/>
         <PlacesToSee />
-        <Scheduler />
 
         {/* High Impact Quote Section */}
         <section className="bg-zinc-950 text-white py-24 px-6 md:px-12 lg:px-24 text-center relative overflow-hidden">

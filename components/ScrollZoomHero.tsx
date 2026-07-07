@@ -91,6 +91,9 @@ export default function Hero() {
             transition={{ delay: 0.7 }}
             className="flex flex-col items-center gap-2 mt-8"
           >
+            <span className="text-base md:text-lg font-mono text-copper uppercase tracking-[0.25em] font-bold mb-2 block">
+              10 August to 24 August
+            </span>
             <Link 
               href="/checkout"
               style={{ background: "var(--copper)" }}
