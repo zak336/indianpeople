@@ -113,7 +113,7 @@ export default function RootLayout({
         <link rel="icon" href="/assets/icon.jpeg" type="image/jpeg" />
         <link rel="apple-touch-icon" href="/assets/icon.jpeg" />
       </head>
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col font-sans antialiased">
         <AuthProvider>{children}</AuthProvider>
       </body>
     </html>
