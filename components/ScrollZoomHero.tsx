@@ -47,6 +47,8 @@ export default function Hero() {
             filter: imageFilter,
           }}
         />
+        {/* Dark Overlay for Text Contrast */}
+        <div className="absolute inset-0 bg-black/35 pointer-events-none" />
       </div>
 
       <motion.div
