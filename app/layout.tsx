@@ -92,6 +92,13 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport = {
+  themeColor: "#c96e38",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -105,8 +112,6 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/assets/icon.jpeg" type="image/jpeg" />
         <link rel="apple-touch-icon" href="/assets/icon.jpeg" />
-        <meta name="theme-color" content="#c96e38" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
       </head>
       <body className="min-h-full flex flex-col">
         <AuthProvider>{children}</AuthProvider>
