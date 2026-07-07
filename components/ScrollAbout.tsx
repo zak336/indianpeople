@@ -115,14 +115,14 @@ export default function About() {
             </div>
 
             {/* Tab Controls */}
-            <div className="flex flex-wrap gap-2 md:gap-3 border border-stone-200 p-1.5 rounded-full bg-stone-50 shrink-0 self-start md:self-end">
+            <div className="flex flex-nowrap gap-1 md:gap-2 border border-stone-200 p-1 rounded-full bg-stone-50 shrink-0 self-start md:self-end overflow-x-auto whitespace-nowrap max-w-full">
               {features.map((feature, idx) => {
                 const isActive = activeTab === idx;
                 return (
                   <button
                     key={idx}
                     onClick={() => handleTabClick(idx)}
-                    className={`relative px-4 py-2 text-xs font-mono uppercase tracking-wider rounded-full cursor-pointer transition-colors duration-300 ${
+                    className={`relative px-4 py-2 text-xs font-mono uppercase tracking-wider rounded-full cursor-pointer transition-colors duration-300 whitespace-nowrap ${
                       isActive ? "text-white" : "text-zinc-500 hover:text-zinc-900"
                     }`}
                   >
