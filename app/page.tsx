@@ -132,6 +132,21 @@ export default function Home() {
         <Hero />
         <About />
         <Coliving />
+        
+        {/* High Impact Quote Section */}
+        <section className="bg-zinc-950 text-white py-24 px-6 md:px-12 lg:px-24 text-center relative overflow-hidden">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,112,2,0.1),transparent_60%)] pointer-events-none" />
+          <div className="max-w-4xl mx-auto relative z-10">
+            <span className="text-xs font-mono tracking-[0.4em] text-copper uppercase mb-6 block">
+              THE VISION
+            </span>
+            <blockquote className="text-3xl md:text-5xl font-serif italic font-medium leading-tight text-stone-100 tracking-tight">
+              "We live, explore, and build together. Not a travel program, a community."
+            </blockquote>
+            <div className="w-12 h-1 bg-copper mx-auto mt-8 rounded-full" />
+          </div>
+        </section>
+
         <Programs/>
         <PlacesToSee />
         <Scheduler />
