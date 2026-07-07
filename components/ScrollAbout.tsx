@@ -103,7 +103,7 @@ export default function About() {
       <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-center py-16">
         
         {/* Header & Tabs Container */}
-        <div className="max-w-7xl mx-auto w-full px-6 md:px-12 lg:px-24 mb-10 shrink-0">
+        <div className="max-w-7xl mx-auto w-full px-6 md:px-12 lg:px-24 m-20 shrink-0">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
             <div className="max-w-2xl">
               <span className="text-xs font-mono tracking-[0.4em] text-[var(--copper)] uppercase mb-2 block">
