@@ -132,7 +132,10 @@ export default function Home() {
         <Hero />
         <About />
         <Coliving />
-        
+        <Programs/>
+        <PlacesToSee />
+        <Scheduler />
+
         {/* High Impact Quote Section */}
         <section className="bg-zinc-950 text-white py-24 px-6 md:px-12 lg:px-24 text-center relative overflow-hidden">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,112,2,0.1),transparent_60%)] pointer-events-none" />
@@ -147,9 +150,6 @@ export default function Home() {
           </div>
         </section>
 
-        <Programs/>
-        <PlacesToSee />
-        <Scheduler />
         <ScrollGallery />
         <FAQ />
         <Footer />
