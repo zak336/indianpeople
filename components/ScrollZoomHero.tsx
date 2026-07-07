@@ -33,7 +33,7 @@ export default function Hero() {
   `;
 
  return (
-  <div ref={ref} id="home" className="relative h-[200vh]">
+  <div ref={ref} id="home" className="relative z-0 h-[200vh]">
     <section className="sticky top-0 h-screen overflow-hidden">
       <div className="relative w-full h-full">
         <MotionImage

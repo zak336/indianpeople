@@ -99,7 +99,7 @@ export default function About() {
   ];
 
   return (
-    <section ref={containerRef} id="about" className="relative z-10 h-[400vh] bg-white text-zinc-900">
+    <section ref={containerRef} id="about" className="relative z-25 h-[400vh] bg-white text-zinc-900">
       <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-center py-16">
         
         {/* Header & Tabs Container */}

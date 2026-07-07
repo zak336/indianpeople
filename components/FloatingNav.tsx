@@ -35,10 +35,10 @@ export default function FloatingNav() {
 
   return (
     <motion.div 
-      initial={{ opacity: 0, x: -50 }}
-      animate={{ opacity: 1, x: 0 }}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
-      className="fixed left-6 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-4 bg-white/95 backdrop-blur-xl px-3 py-6 rounded-full shadow-2xl border border-zinc-200"
+      className="fixed bottom-6 left-1/2 -translate-x-1/2 md:bottom-auto md:left-6 md:top-1/2 md:-translate-y-1/2 md:-translate-x-0 z-50 flex flex-row md:flex-col gap-4 bg-white/95 backdrop-blur-xl px-6 py-3 md:px-3 md:py-6 rounded-full shadow-2xl border border-zinc-200"
     >
       <a href="#home" className={getLinkClass("home")} title="Home">
         <Home size={22} />
