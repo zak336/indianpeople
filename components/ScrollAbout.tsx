@@ -148,7 +148,7 @@ export default function About() {
             <motion.div
               key={idx}
               style={{ x: item.x, opacity: item.opacity }}
-              className="absolute inset-x-6 md:inset-x-12 lg:inset-x-24 bottom-0 top-0 flex flex-col md:flex-row gap-8 md:gap-12 items-center justify-between bg-white"
+              className="absolute inset-x-6 md:inset-x-12 lg:inset-x-24 bottom-0 top-0 flex flex-col md:flex-row gap-8 md:gap-12 items-center bg-white"
             >
               {/* Image Frame */}
               <div className="w-full md:w-1/2 overflow-hidden rounded-3xl shadow-xl border border-zinc-100 shrink-0 relative h-48 sm:h-64 md:h-[85%]">
