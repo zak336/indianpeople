@@ -11,7 +11,13 @@ import Image from "next/image";
 
 const MotionImage = motion(Image);
 
-const images = [
+interface GalleryItem {
+  src: string;
+  title: string;
+  subtitle: string;
+}
+
+const images: GalleryItem[] = [
   {
     src: "https://images.unsplash.com/photo-1600242466690-c1c04f081762?q=80&w=1470&auto=format&fit=crop",
     title: "Ladakh",
@@ -55,8 +61,7 @@ const images = [
 ];
 
 export default function ScrollGallery() {
-  const ref = useRef(null);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState<boolean | null>(null);
 
   useEffect(() => {
     setIsMobile(window.innerWidth < 768);
@@ -64,6 +69,60 @@ export default function ScrollGallery() {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  // Avoid hydration flashes by rendering a placeholder container during SSR
+  if (isMobile === null) {
+    return <div className="h-screen bg-[#fefbf7]" />;
+  }
+
+  return isMobile ? <MobileGallery /> : <DesktopGallery />;
+}
+
+// 1. Mobile Gallery Layout Component (No Scroll Hooks)
+function MobileGallery() {
+  return (
+    <section id="gallery" className="bg-[#fefbf7] py-20 px-6 border-t border-stone-200">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-12">
+          <span className="text-xs font-mono tracking-[0.4em] text-[var(--copper)] uppercase mb-2 block">
+            VIBE GALLERY
+          </span>
+          <h2 className="text-3xl font-serif font-medium tracking-tight text-stone-900">
+            The Spirit of Ladakh
+          </h2>
+          <p className="mt-2 text-xs text-stone-500 font-sans leading-relaxed max-w-md mx-auto">
+            Witness timeless landscapes, sacred traditions, and moments that reconnect you with nature.
+          </p>
+        </div>
+        
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          {images.map((item, idx) => (
+            <div 
+              key={idx} 
+              className="bg-white border border-stone-200 p-4 rounded-3xl shadow-sm hover:shadow-md transition-shadow duration-300"
+            >
+              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-4 bg-stone-100">
+                <Image
+                  src={item.src}
+                  alt={item.title}
+                  fill
+                  unoptimized
+                  className="object-cover"
+                />
+              </div>
+              <h3 className="text-base font-bold text-stone-950 tracking-tight leading-none">{item.title}</h3>
+              <p className="text-[10px] font-mono text-[var(--copper)] uppercase tracking-wider mt-1">{item.subtitle}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// 2. Desktop Gallery Layout Component (Houses all useTransform/useScroll hooks)
+function DesktopGallery() {
+  const ref = useRef(null);
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -73,65 +132,24 @@ export default function ScrollGallery() {
   const progress = useSpring(scrollYProgress);
   const spacing = 260;
 
-  const cards = images.map((_, i) => {
-    const offset = i - (images.length - 1) / 2;
-    return {
-      x: offset * spacing + (Math.random() - 0.5) * 40,
-      y: (Math.random() - 0.5) * 120,
-      rotate: (Math.random() - 0.5) * 12,
-      scale: 0.95 + Math.random() * 0.08,
-      z: Math.random() * 100,
-    };
-  });
+  // Static randomized offsets for cards
+  const cards = useRef(
+    images.map((_, i) => {
+      const offset = i - (images.length - 1) / 2;
+      return {
+        x: offset * spacing + (Math.random() - 0.5) * 40,
+        y: (Math.random() - 0.5) * 120,
+        rotate: (Math.random() - 0.5) * 12,
+        scale: 0.95 + Math.random() * 0.08,
+      };
+    })
+  ).current;
 
-  // Mobile Layout: Responsive Grid
-  if (isMobile) {
-    return (
-      <section id="gallery" className="bg-[#fefbf7] py-20 px-6 border-t border-stone-200">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <span className="text-xs font-mono tracking-[0.4em] text-[var(--copper)] uppercase mb-2 block">
-              VIBE GALLERY
-            </span>
-            <h2 className="text-3xl font-serif font-medium tracking-tight text-stone-900">
-              The Spirit of Ladakh
-            </h2>
-            <p className="mt-2 text-xs text-stone-500 font-sans leading-relaxed max-w-md mx-auto">
-              Witness timeless landscapes, sacred traditions, and moments that reconnect you with nature.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {images.map((item, idx) => (
-              <div 
-                key={idx} 
-                className="bg-white border border-stone-200 p-4 rounded-3xl shadow-sm hover:shadow-md transition-shadow duration-300"
-              >
-                <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-4 bg-stone-100">
-                  <Image
-                    src={item.src}
-                    alt={item.title}
-                    fill
-                    unoptimized
-                    className="object-cover"
-                  />
-                </div>
-                <h3 className="text-base font-bold text-stone-950 tracking-tight leading-none">{item.title}</h3>
-                <p className="text-[10px] font-mono text-[var(--copper)] uppercase tracking-wider mt-1">{item.subtitle}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-    );
-  }
-
-  // Desktop Layout: Original 3D Sticky Scroll Gallery
   return (
     <section ref={ref} id="gallery" className="relative h-[350vh] bg-white-100">
       <div className="sticky top-0 h-screen overflow-hidden flex items-center justify-center">
         <div className="absolute top-0 border-b border-dashed border-stone-300 pb-6 pt-10 mb-20 text-center">
-          <h1 className="text-3xl font-bold tracking-[0.2em] text-stone-900">
+          <h1 className="text-3xl font-bold tracking-[0.2em] text-stone-900 font-serif">
             The Spirit of Ladakh
           </h1>
           <p className="mt-2 text-xs uppercase tracking-[0.3em] text-stone-900">
@@ -140,72 +158,92 @@ export default function ScrollGallery() {
         </div>
 
         {images.map((img, i) => {
-          const delay = i * 0.07;
-          const x = useTransform(
-            progress,
-            [0, 0.85, 1],
-            [0, cards[i].x * 1.08, cards[i].x]
-          );
-
-          const y = useTransform(
-            progress,
-            [0, 1],
-            [0, cards[i].y]
-          );
-
-          const rotate = useTransform(
-            progress,
-            [0, 1],
-            [0, cards[i].rotate]
-          );
-
-          const scale = useTransform(
-            progress,
-            [0, 0.6, 1],
-            [0.85, 1.05, cards[i].scale]
-          );
-          
-          const opacity = useTransform(
-            progress,
-            [delay, delay + 0.15],
-            [0, 1]
-          );
-
-          const blur = useTransform(
-            progress,
-            [0, 0.25],
-            ["8px", "0px"]
-          );
-
           return (
-            <MotionImage
+            <DesktopCard
               key={i}
-              src={img.src}
-              alt=""
-              width={400}
-              height={360}
-              unoptimized
-              drag
-              dragElastic={0.15}
-              whileHover={{
-                scale: 1.08,
-                zIndex: 100,
-              }}
-              style={{
-                x,
-                y,
-                rotate,
-                scale,
-                opacity: opacity,
-                filter: blur,
-                transformPerspective: 1000,
-                transformStyle: "preserve-3d",
-              }}
-              className="absolute w-100 h-90 rounded-2xl object-cover shadow-2xl cursor-grab"
+              img={img}
+              index={i}
+              progress={progress}
+              cardConfig={cards[i]}
             />
           );
         })}
       </div>
     </section>
+  );
+}
+
+interface DesktopCardProps {
+  img: GalleryItem;
+  index: number;
+  progress: any;
+  cardConfig: { x: number; y: number; rotate: number; scale: number };
+}
+
+// Helper Card Subcomponent to encapsulate individual useTransform hooks
+function DesktopCard({ img, index, progress, cardConfig }: DesktopCardProps) {
+  const delay = index * 0.07;
+  
+  const x = useTransform(
+    progress,
+    [0, 0.85, 1],
+    [0, cardConfig.x * 1.08, cardConfig.x]
+  );
+
+  const y = useTransform(
+    progress,
+    [0, 1],
+    [0, cardConfig.y]
+  );
+
+  const rotate = useTransform(
+    progress,
+    [0, 1],
+    [0, cardConfig.rotate]
+  );
+
+  const scale = useTransform(
+    progress,
+    [0, 0.6, 1],
+    [0.85, 1.05, cardConfig.scale]
+  );
+  
+  const opacity = useTransform(
+    progress,
+    [delay, delay + 0.15],
+    [0, 1]
+  );
+
+  const blur = useTransform(
+    progress,
+    [0, 0.25],
+    ["8px", "0px"]
+  );
+
+  return (
+    <MotionImage
+      src={img.src}
+      alt=""
+      width={400}
+      height={360}
+      unoptimized
+      drag
+      dragElastic={0.15}
+      whileHover={{
+        scale: 1.08,
+        zIndex: 100,
+      }}
+      style={{
+        x,
+        y,
+        rotate,
+        scale,
+        opacity,
+        filter: blur,
+        transformPerspective: 1000,
+        transformStyle: "preserve-3d",
+      }}
+      className="absolute w-100 h-90 rounded-2xl object-cover shadow-2xl cursor-grab"
+    />
   );
 }
