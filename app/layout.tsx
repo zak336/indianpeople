@@ -86,6 +86,10 @@ export const metadata: Metadata = {
     google: "your-google-verification-code",
     yandex: "your-yandex-verification-code",
   },
+  icons: {
+    icon: "/assets/icon.jpeg",
+    apple: "/assets/icon.jpeg",
+  },
 };
 
 export default function RootLayout({
@@ -99,8 +103,8 @@ export default function RootLayout({
       className={`${inter.variable} ${playfair.variable} ${outfit.variable} h-full antialiased`}
     >
       <head>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="apple-touch-icon" href="/assets/hero.jpeg" />
+        <link rel="icon" href="/assets/icon.jpeg" type="image/jpeg" />
+        <link rel="apple-touch-icon" href="/assets/icon.jpeg" />
         <meta name="theme-color" content="#c96e38" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
       </head>
