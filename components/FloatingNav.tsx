@@ -1,5 +1,5 @@
 "use client";
-import { Home, Info, Calendar, Image } from "lucide-react";
+import { Home, Info, MapPin, LayoutGrid, HelpCircle } from "lucide-react";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
@@ -18,7 +18,7 @@ export default function FloatingNav() {
       { rootMargin: "-50% 0px -50% 0px" }
     );
 
-    const sections = document.querySelectorAll("#home, #about, #programs, #gallery");
+    const sections = document.querySelectorAll("#home, #about, #pricing, #destinations, #faq");
     sections.forEach((section) => observer.observe(section));
 
     return () => observer.disconnect();
@@ -34,7 +34,7 @@ export default function FloatingNav() {
   };
 
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
@@ -43,14 +43,17 @@ export default function FloatingNav() {
       <a href="#home" className={getLinkClass("home")} title="Home">
         <Home size={22} />
       </a>
-      <a href="#about" className={getLinkClass("about")} title="About">
+      <a href="#about" className={getLinkClass("about")} title="Who It's For">
         <Info size={22} />
       </a>
-      <a href="#programs" className={getLinkClass("programs")} title="Programs">
-        <Calendar size={22} />
+      <a href="#destinations" className={getLinkClass("destinations")} title="Destinations">
+        <MapPin size={22} />
       </a>
-      <a href="#gallery" className={getLinkClass("gallery")} title="Gallery">
-        <Image size={22} />
+      <a href="#pricing" className={getLinkClass("pricing")} title="Plans & Pricing">
+        <LayoutGrid size={22} />
+      </a>
+      <a href="#faq" className={getLinkClass("faq")} title="FAQ">
+        <HelpCircle size={22} />
       </a>
     </motion.div>
   );

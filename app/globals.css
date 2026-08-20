@@ -1,10 +1,14 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --copper: #ff7002ce;
-  --copper-dark: #ff7002e0;
+  --background: #FAF7F2;
+  --foreground: #1C1917;
+  --copper: #C97C2E;
+  --copper-dark: #A96420;
+  --copper-light: #E8A84A;
+  --sage: #4A7C59;
+  --sage-light: #6B9E7A;
+  --ivory: #FAF7F2;
   --basalt: #15171A;
   scroll-behavior: smooth;
 }
@@ -18,6 +22,7 @@ html {
 body {
   font-size: 1rem;
   line-height: 1.5;
+  background-color: var(--ivory);
 }
 
 @theme {
@@ -25,15 +30,13 @@ body {
   --color-foreground: var(--foreground);
   --color-copper: var(--copper);
   --color-copper-dark: var(--copper-dark);
+  --color-copper-light: var(--copper-light);
+  --color-sage: var(--sage);
+  --color-sage-light: var(--sage-light);
+  --color-ivory: var(--ivory);
   --font-sans: var(--font-inter), system-ui, sans-serif;
   --font-serif: var(--font-playfair), Georgia, serif;
   --font-mono: var(--font-outfit), ui-monospace, monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
 

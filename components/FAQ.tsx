@@ -6,31 +6,43 @@ import { Plus, Minus } from "lucide-react";
 export default function FAQ() {
   const faqs = [
     {
-      question: "What's included?",
-      answer: "Villa accommodation, private room, single-occupancy workspace, Starlink + Fiber Dual-WAN internet, all meals handled daily, and a vetted community of 10-15 peer founders/operators."
+      question: "Who is Sync Retreat for?",
+      answer: "Sync Retreat is for anyone who works remotely and wants to combine productive deep-work with experiencing India's most scenic locations. This includes freelancers, agency owners, remote tech professionals, creative workers (writers, designers, filmmakers), burned-out employees considering a leap, and early-stage founders. We also offer custom programs for corporate teams and small startup offsite groups."
     },
     {
-      question: "Is this a co-working retreat?",
-      answer: "No — it is a single-outcome execution sprint. There are zero leisure excursions, networking agendas, or required itineraries. You come with one defined deliverable and execute daily."
+      question: "What's included in the 7-day and 14-day plans?",
+      answer: "Both plans include: private ensuite room accommodation, ergonomic co-working workspace, all meals (breakfast, lunch, and dinner), high-speed redundant internet, airport/station transfers, and access to the Sync Retreat community. The 14-day plan additionally includes two curated weekend exploration outings to local scenic spots."
     },
     {
-      question: "What is the refund policy?",
-      answer: "Your deposit is fully refundable up to 30 days before the cohort starts. Within 30 days, we can roll your deposit over to a future cohort if your slot can be filled."
+      question: "Can I work on client projects during the retreat?",
+      answer: "Yes. Our spaces operate on a 'Work-First' protocol. Core work hours (9 AM – 6 PM) are strictly silent deep-work periods with dual-redundant high-speed Wi-Fi and power backups. Community excursions and group dinners happen strictly outside working hours."
     },
     {
-      question: "What if I need to leave early?",
-      answer: "Since your seat is locked and cannot be filled mid-cohort, fees are non-refundable. However, we will handle all transport logistics and safety protocols to ensure a safe exit."
+      question: "What is the Yearly Pass?",
+      answer: "The Yearly Pass (₹1,49,999) gives you 2 retreat trips to any Sync Retreat location across India, at any time during the year. You get priority date selection before spots open to the public. Each trip can be used as a 7-day or 14-day plan. Trips can be rolled over to the following year if unused."
     },
     {
-      question: "How reliable is the internet?",
-      answer: "We run a dual-WAN redundant fiber loop containing high-speed local fiber backed up by a Starlink satellite terminal, delivering a tested uptime of 99.9% at 3,524 meters."
-    }
+      question: "Do you handle corporate offsites and team bookings?",
+      answer: "Yes. We provide dedicated private villas, custom catering, team-building facilitators, and 100% GST-compliant invoices with Input Tax Credit (ITC) eligibility. Email us at contact@syncretreat.com for a custom quote."
+    },
+    {
+      question: "What is the refund and cancellation policy?",
+      answer: "100% refundable deposit up to 30 days before start date. If cancelled within 30 days, your deposit converts into a lifetime credit valid across any future SyncRetreat."
+    },
+    {
+      question: "Which locations are currently available?",
+      answer: "Our next retreat is in Varkala, Kerala starting October 19, 2026. Ladakh was our inaugural location. Manali and Jaipur are coming soon. We run 9 retreat windows per season — the same start dates apply to both 7-day and 14-day plans."
+    },
+    {
+      question: "What is the Room Upgrade?",
+      answer: "For ₹19,999 extra on any 7-day or 14-day booking, you can upgrade to a premium suite category — typically featuring a larger room, premium bedding, enhanced bathroom amenities, and where available, a private balcony or terrace with scenic views."
+    },
   ];
 
   const [openIdx, setOpenIdx] = useState<number | null>(null);
 
   return (
-    <section id="faq" className="bg-[#fefbf7] text-zinc-900 py-24 px-6 md:px-12 lg:px-24 border-t border-stone-200">
+    <section id="faq" className="bg-white text-zinc-900 py-24 px-6 md:px-12 lg:px-24 border-t border-stone-200">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-16">
           <span className="text-xs font-mono tracking-[0.4em] text-[var(--copper)] uppercase block mb-2">QUESTIONS</span>

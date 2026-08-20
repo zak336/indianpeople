@@ -1,16 +1,10 @@
-import {
-  motion,
-  useScroll,
-  useTransform,
-  useMotionTemplate,
-} from "framer-motion";
+"use client";
+import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { div } from "framer-motion/client";
 import { useRef } from "react";
-import { ArrowRight, ChevronDown, ChevronRight } from "lucide-react";
-
-const MotionImage = motion(Image);
+import { ChevronRight, MapPin } from "lucide-react";
+import { BsWhatsapp } from "react-icons/bs";
 
 export default function Hero() {
   const ref = useRef(null);
@@ -20,112 +14,134 @@ export default function Hero() {
     offset: ["start start", "end start"],
   });
 
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 2]);
-  const opacity = useTransform(scrollYProgress, [0, 0.4], [1, 0]);
-  const y = useTransform(scrollYProgress, [0, 1], [0, -200]);
-  const textColor = useTransform(scrollYProgress, [0,0.2], ["#ffffff", "#0e0e0e"] );
-  const blur = useTransform(scrollYProgress, [0, 1], [8, 20]);
-  const brightness = useTransform(scrollYProgress, [0, 1], [1, 0.6]);
-  const MotionArrow = motion(ArrowRight);
-  const imageFilter = useMotionTemplate`
-    blur(${blur}px)
-    brightness(${brightness})
-  `;
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.07]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const y = useTransform(scrollYProgress, [0, 1], [0, -80]);
 
- return (
-  <div ref={ref} id="home" className="relative z-0 h-[200vh]">
-    <section className="sticky top-0 h-screen overflow-hidden">
-      <div className="relative w-full h-full">
-        <MotionImage
-          src="/assets/hero.jpeg"
-          alt="Sync Retreat - Mountain landscape in Leh, Ladakh at 3,524m altitude"
-          fill
-          priority
-          className="object-cover"
-          style={{
-            scale,
-            filter: imageFilter,
-          }}
-        />
-        {/* Dark Overlay for Text Contrast */}
-        <div className="absolute inset-0 bg-black/35 pointer-events-none" />
-      </div>
-
-      <motion.div
-        className="absolute inset-0 flex items-center justify-center"
-        style={{
-          opacity,
-          y,
-        }}
-      >
-        
-        <div className="flex flex-col items-center gap-4 text-center text-white px-4">
-          <motion.p 
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="text-xs md:text-sm font-mono tracking-[0.5em] text-[var(--copper)] uppercase drop-shadow-md"
-          >
-            Ladakh Execution Sprint
-          </motion.p>
-          
-          <motion.h1 
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.4, type: "spring", stiffness: 100 }}
-            className="text-4xl md:text-[5.5rem] leading-none font-serif font-medium tracking-tight drop-shadow-2xl max-w-4xl"
-          >
-            14 Days. Zero Distractions. One Output.
-          </motion.h1>
-
-          <motion.p 
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
-            className="text-base md:text-lg font-sans font-light tracking-wide max-w-2xl mx-auto drop-shadow-md text-zinc-200 mt-2"
-          >
-            A precision-built execution environment in Ladakh for founders and teams who need to ship — not unwind.
-          </motion.p>
-
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7 }}
-            className="flex flex-col items-center gap-2 mt-8"
-          >
-            <span className="text-base md:text-lg font-mono text-copper uppercase tracking-[0.25em] font-bold mb-2 block">
-              10 August to 24 August
-            </span>
-            <Link 
-              href="/checkout"
-              style={{ background: "var(--copper)" }}
-              className="px-8 py-4 rounded-full flex items-center gap-3 text-white font-sans font-bold uppercase tracking-wide cursor-pointer shadow-xl shadow-[var(--copper)]/30 hover:shadow-[var(--copper)]/50 hover:bg-[var(--copper-dark)] transition-all"
-            >
-              <span>Reserve Your Seat — ₹25,000 Deposit</span>
-              <ChevronRight size={20} />
-            </Link>
-            <p className="text-[10px] font-mono uppercase tracking-wider text-zinc-300 mt-2">
-              Fully refundable up to 30 days before cohort start.
-            </p>
+  return (
+    <div ref={ref} id="home" className="relative z-0 h-[100vh]">
+      <section className="sticky top-0 h-screen overflow-hidden">
+        <div className="relative w-full h-full">
+          <motion.div className="absolute inset-0" style={{ scale }}>
+            <Image
+              src="/houseboat.jpg"
+              alt="Scenic houseboat in Kerala — Sync Retreat workation programs"
+              fill
+              priority
+              unoptimized
+              className="object-cover"
+            />
           </motion.div>
-
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.9 }}
-            className="flex items-center gap-8 mt-12 text-[10px] md:text-xs font-mono uppercase tracking-[0.25em] border-t border-white/20 pt-6"
-          >
-            <a href="#about" className="hover:text-[var(--copper)] transition-colors duration-300">
-              The Problem
-            </a>
-            <span className="w-1.5 h-1.5 rounded-full bg-white/30" />
-            <a href="#programs" className="hover:text-[var(--copper)] transition-colors duration-300">
-              How It Works
-            </a>
-          </motion.div>
+          {/* Darker gradient overlay for better text legibility */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/80 pointer-events-none" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.4),transparent_60%)] pointer-events-none" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(201,124,46,0.15),transparent_60%)] pointer-events-none" />
         </div>
-      </motion.div>
-    </section>
-  </div>
-);
+
+        <motion.div
+          className="absolute inset-0 flex items-center justify-center"
+          style={{ opacity, y }}
+        >
+          <div className="flex flex-col items-center gap-5 text-center text-white px-4 max-w-5xl">
+
+            {/* Next retreat badge */}
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-4 py-2"
+            >
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              <MapPin size={12} className="text-[var(--copper-light)]" />
+              <span className="text-xs font-mono tracking-[0.3em] text-white/90 uppercase">
+                Next Retreat: Varkala, Kerala — Oct 19
+              </span>
+            </motion.div>
+
+            <motion.p
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="text-xs md:text-sm font-mono tracking-[0.5em] text-[var(--copper-light)] uppercase drop-shadow-md"
+            >
+              Sync Retreat · India
+            </motion.p>
+
+            <motion.h1
+              initial={{ opacity: 0, scale: 0.97 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.4, type: "spring", stiffness: 100 }}
+              className="text-4xl md:text-[5rem] leading-none font-serif font-medium tracking-tight drop-shadow-[0_10px_10px_rgba(0,0,0,0.8)]"
+            >
+              Work Remotely.
+              <br />
+              <span className="italic text-[var(--copper-light)]">Explore India.</span>
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+              className="text-base md:text-lg font-sans font-medium tracking-wide max-w-2xl mx-auto drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)] text-zinc-100 mt-2"
+            >
+              A 14-day curated workation combining enterprise-grade infrastructure with coastal living. Zero operational friction. Maximum output.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7 }}
+              className="flex flex-col sm:flex-row items-center gap-4 mt-6"
+            >
+              <Link
+                href="/checkout"
+                style={{ background: "var(--copper)" }}
+                className="px-8 py-4 rounded-full flex items-center gap-3 text-white font-sans font-bold uppercase tracking-wide cursor-pointer shadow-xl shadow-[var(--copper)]/30 hover:shadow-[var(--copper)]/50 hover:scale-105 transition-all duration-300"
+              >
+                <span>Reserve a Spot — ₹29,999 Deposit</span>
+                <ChevronRight size={20} />
+              </Link>
+              <a
+                href="https://chat.whatsapp.com/K8OntEo4WTkAfX2iGA9Io9"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-8 py-4 rounded-full flex items-center gap-3 text-white font-sans font-semibold border border-white/30 hover:border-[#25D366]/50 hover:bg-[#25D366]/10 uppercase tracking-wide transition-all duration-300 backdrop-blur-sm"
+              >
+                <BsWhatsapp size={18} className="text-[#25D366]" />
+                <span>Join our Community</span>
+              </a>
+            </motion.div>
+
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.85 }}
+              className="text-[10px] font-mono uppercase tracking-wider text-zinc-300"
+            >
+              Fully refundable up to 30 days before retreat start.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.9 }}
+              className="flex items-center gap-8 mt-8 text-[10px] md:text-xs font-mono uppercase tracking-[0.25em] border-t border-white/20 pt-6"
+            >
+              <a href="#about" className="hover:text-[var(--copper-light)] transition-colors duration-300">
+                Who It&apos;s For
+              </a>
+              <span className="w-1.5 h-1.5 rounded-full bg-white/30" />
+              <a href="#destinations" className="hover:text-[var(--copper-light)] transition-colors duration-300">
+                Destinations
+              </a>
+              <span className="w-1.5 h-1.5 rounded-full bg-white/30" />
+              <a href="#pricing" className="hover:text-[var(--copper-light)] transition-colors duration-300">
+                Plans & Pricing
+              </a>
+            </motion.div>
+          </div>
+        </motion.div>
+      </section>
+    </div>
+  );
 }
