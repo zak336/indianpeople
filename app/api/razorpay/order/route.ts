@@ -9,7 +9,7 @@ export async function POST(req: NextRequest) {
     // Check if secrets are available
     if (!key_id || !key_secret) {
       return NextResponse.json({ 
-        error: "Razorpay keys are missing. Checked NEXT_PUBLIC_RAZORPAY_KEY_ID, RAZORPAY_KEY_ID, and key_id." 
+        error: `Razorpay keys missing! ID found: ${!!key_id}. Secret found: ${!!key_secret}.`
       }, { status: 500 });
     }
 
