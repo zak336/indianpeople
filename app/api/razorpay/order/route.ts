@@ -3,14 +3,17 @@ import Razorpay from "razorpay";
 
 export async function POST(req: NextRequest) {
   try {
+    const key_id = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || process.env.key_id;
+    const key_secret = process.env.RAZORPAY_KEY_SECRET || process.env.key_secret;
+
     // Check if secrets are available
-    if (!process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || !process.env.RAZORPAY_KEY_SECRET) {
+    if (!key_id || !key_secret) {
       return NextResponse.json({ error: "Razorpay keys are missing." }, { status: 500 });
     }
 
     const razorpay = new Razorpay({
-      key_id: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
-      key_secret: process.env.RAZORPAY_KEY_SECRET,
+      key_id,
+      key_secret,
     });
 
     const { amount, currency = "INR", receipt } = await req.json();
@@ -34,13 +37,15 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ 
       orderId: order.id, 
       amount: order.amount, 
-      currency: order.currency 
+      currency: order.currency,
+      keyId: key_id
     }, { status: 200 });
     
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Razorpay Order Creation Error:", error);
+    const errorMessage = error instanceof Error ? error.message : "Failed to create Razorpay order";
     return NextResponse.json(
-      { error: error.message || "Failed to create Razorpay order" }, 
+      { error: errorMessage }, 
       { status: 500 }
     );
   }
