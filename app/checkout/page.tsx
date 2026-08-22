@@ -142,7 +142,8 @@ export default function Checkout() {
       const orderData = await orderResponse.json();
       
       if (!orderData.orderId) {
-        alert("Failed to initialize payment. Please try again.");
+        alert("Payment initialization failed: " + (orderData.error || "Please try again."));
+        console.error("Order creation failed:", orderData);
         setIsProcessing(false);
         return;
       }
