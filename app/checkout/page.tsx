@@ -156,7 +156,7 @@ export default function Checkout() {
         order_id: orderData.orderId,
         name: "Sync Retreat",
         description: `${selectedPlan.label} · ${isStandardPlan ? retreatDates.find(d => d.value === form.retreatDate)?.label + " · Deposit" : "Flexible Dates"}`,
-        image: "/logo.jpeg",
+        image: "/Logo.jpeg",
         prefill: {
           name: form.name,
           email: form.email,
