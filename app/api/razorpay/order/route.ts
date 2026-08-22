@@ -3,12 +3,14 @@ import Razorpay from "razorpay";
 
 export async function POST(req: NextRequest) {
   try {
-    const key_id = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || process.env.key_id;
+    const key_id = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || process.env.RAZORPAY_KEY_ID || process.env.key_id;
     const key_secret = process.env.RAZORPAY_KEY_SECRET || process.env.key_secret;
 
     // Check if secrets are available
     if (!key_id || !key_secret) {
-      return NextResponse.json({ error: "Razorpay keys are missing." }, { status: 500 });
+      return NextResponse.json({ 
+        error: "Razorpay keys are missing. Checked NEXT_PUBLIC_RAZORPAY_KEY_ID, RAZORPAY_KEY_ID, and key_id." 
+      }, { status: 500 });
     }
 
     const razorpay = new Razorpay({
