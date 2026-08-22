@@ -123,7 +123,7 @@ export default function Programs() {
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
           <div className="max-w-2xl">
-            <p className="font-mono text-xs font-bold uppercase tracking-[0.3em] text-[var(--copper)] mb-3">
+            <p className="font-mono text-xs font-bold uppercase tracking-[0.3em] text-(--copper) mb-3">
               PLANS & PRICING
             </p>
             <h2 className="text-3xl md:text-5xl font-serif font-medium tracking-tight leading-tight">
@@ -135,7 +135,7 @@ export default function Programs() {
           </div>
           <Link
             href="/checkout"
-            className="shrink-0 self-start md:self-end inline-flex items-center gap-3 px-7 py-3.5 rounded-full bg-[var(--copper)] text-white font-sans font-bold uppercase tracking-wide text-sm hover:bg-[var(--copper-dark)] transition-colors shadow-lg"
+            className="shrink-0 self-start md:self-end inline-flex items-center gap-3 px-7 py-3.5 rounded-full bg-(--copper) text-white font-sans font-bold uppercase tracking-wide text-sm hover:bg-(--copper-dark) transition-colors shadow-lg"
           >
             Reserve a Spot <ChevronRight size={16} />
           </Link>
@@ -186,7 +186,7 @@ function PlanCard({ plan, compact = false }: { plan: typeof plans[0]; compact?: 
       variants={cardVariants}
       className={`relative rounded-3xl border overflow-hidden flex flex-col transition-all duration-300 hover:shadow-xl ${
         isHighlighted
-          ? "bg-[var(--basalt)] border-[var(--copper)]/30 text-white shadow-2xl shadow-[var(--copper)]/10"
+          ? "bg-(--basalt) border-(--copper)/30 text-white shadow-2xl shadow-(--copper)/10"
           : "bg-stone-50 border-stone-200 text-zinc-900 hover:border-stone-300"
       }`}
     >
@@ -194,7 +194,7 @@ function PlanCard({ plan, compact = false }: { plan: typeof plans[0]; compact?: 
       {plan.badge && (
         <div className={`absolute top-4 right-4 flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider ${
           isHighlighted
-            ? "bg-[var(--copper)] text-white"
+            ? "bg-(--copper) text-white"
             : isYearly
             ? "bg-emerald-100 text-emerald-800 border border-emerald-200"
             : "bg-zinc-200 text-zinc-700"
@@ -207,7 +207,7 @@ function PlanCard({ plan, compact = false }: { plan: typeof plans[0]; compact?: 
       <div className={`p-7 md:p-8 flex flex-col flex-1 ${compact ? "p-6" : ""}`}>
         {/* Tag */}
         <span className={`text-[10px] font-mono font-bold uppercase tracking-[0.3em] mb-3 ${
-          isHighlighted ? "text-[var(--copper-light)]" : "text-[var(--copper)]"
+          isHighlighted ? "text-(--copper-light)" : "text-(--copper)"
         }`}>
           {plan.tag}
         </span>
@@ -240,7 +240,7 @@ function PlanCard({ plan, compact = false }: { plan: typeof plans[0]; compact?: 
           {plan.features.map((f, i) => (
             <li key={i} className="flex items-start gap-2.5 text-sm">
               <Check size={14} className={`shrink-0 mt-0.5 ${
-                isHighlighted ? "text-[var(--copper-light)]" : "text-[var(--sage)]"
+                isHighlighted ? "text-(--copper-light)" : "text-(--sage)"
               }`} />
               <span className={isHighlighted ? "text-zinc-300" : "text-zinc-600"}>{f}</span>
             </li>
@@ -262,7 +262,7 @@ function PlanCard({ plan, compact = false }: { plan: typeof plans[0]; compact?: 
             style={isHighlighted ? { background: "var(--copper)" } : {}}
             className={`w-full py-3.5 rounded-full flex items-center justify-center gap-2 font-bold uppercase tracking-wide text-sm transition-all duration-300 ${
               isHighlighted
-                ? "text-white shadow-lg shadow-[var(--copper)]/30 hover:shadow-[var(--copper)]/50 hover:bg-[var(--copper-dark)]"
+                ? "text-white shadow-lg shadow-(--copper)/30 hover:shadow-(--copper)/50 hover:bg-(--copper-dark)"
                 : "bg-zinc-900 text-white hover:bg-zinc-700"
             }`}
           >

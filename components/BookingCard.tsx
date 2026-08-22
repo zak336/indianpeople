@@ -214,7 +214,7 @@ export default function ExpeditionReceipt() {
                 <td className="py-2 px-3 font-bold text-zinc-900">
                   ₹45,000+ & Burnout
                 </td>
-                <td className="py-2 px-3 text-right font-bold text-[var(--copper)]">
+                <td className="py-2 px-3 text-right font-bold text-(--copper)">
                   ₹79,999 & Max Output
                 </td>
               </tr>
@@ -240,7 +240,7 @@ export default function ExpeditionReceipt() {
               </p>
             </div>
             <Link href="/checkout">
-              <button className="rounded-full cursor-pointer bg-[var(--copper)] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[var(--copper-dark)] shadow-lg shadow-[var(--copper)]/20">
+              <button className="rounded-full cursor-pointer bg-(--copper) px-6 py-3 text-sm font-semibold text-white transition hover:bg-(--copper-dark) shadow-lg shadow-(--copper)/20">
                 Book — ₹29,999 Deposit
               </button>
             </Link>

@@ -166,17 +166,17 @@ export default function Home() {
         <Scheduler />
 
         {/* High Impact Quote Section */}
-        <section className="bg-[var(--basalt)] text-white py-24 px-6 md:px-12 lg:px-24 text-center relative overflow-hidden">
+        <section className="bg-(--basalt) text-white py-24 px-6 md:px-12 lg:px-24 text-center relative overflow-hidden">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(201,124,46,0.12),transparent_65%)] pointer-events-none" />
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(74,124,89,0.08),transparent_55%)] pointer-events-none" />
           <div className="max-w-4xl mx-auto relative z-10">
-            <span className="text-xs font-mono tracking-[0.4em] text-[var(--copper-light)] uppercase mb-6 block">
+            <span className="text-xs font-mono tracking-[0.4em] text-(--copper-light) uppercase mb-6 block">
               THE VISION
             </span>
             <blockquote className="text-3xl md:text-5xl font-serif italic font-medium leading-tight text-stone-100 tracking-tight">
               &ldquo;India has always been a land of seekers. We built a place for those who seek both great work and great experiences.&rdquo;
             </blockquote>
-            <div className="w-12 h-px bg-[var(--copper)] mx-auto mt-10 rounded-full" />
+            <div className="w-12 h-px bg-(--copper) mx-auto mt-10 rounded-full" />
             <p className="mt-4 text-xs font-mono uppercase tracking-widest text-zinc-500">
               — Sync Retreat, India
             </p>

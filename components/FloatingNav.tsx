@@ -28,8 +28,8 @@ export default function FloatingNav() {
     const isActive = activeId === id;
     return `p-3 rounded-full transition-all duration-300 ${
       isActive
-        ? "bg-[var(--copper)] text-white scale-110 shadow-lg shadow-[var(--copper)]/30"
-        : "text-zinc-400 hover:text-[var(--copper)] hover:bg-zinc-100"
+        ? "bg-(--copper) text-white scale-110 shadow-lg shadow-(--copper)/30"
+        : "text-zinc-400 hover:text-(--copper) hover:bg-zinc-100"
     }`;
   };
 

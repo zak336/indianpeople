@@ -27,7 +27,7 @@ export default function Community() {
         
         {/* Header */}
         <div className="text-center mb-20">
-          <span className="text-xs font-mono tracking-[0.4em] text-[var(--copper)] uppercase mb-2 block">
+          <span className="text-xs font-mono tracking-[0.4em] text-(--copper) uppercase mb-2 block">
             VETTED NETWORK
           </span>
           <h2 className="text-4xl md:text-5xl font-serif font-bold text-white mb-4">

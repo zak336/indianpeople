@@ -49,6 +49,12 @@ const UPGRADE_PRICE = 19999;
 const DEPOSIT = 29999;
 
 // ─── Razorpay loader ─────────────────────────────────────────
+interface RazorpayResponse {
+  razorpay_payment_id: string;
+  razorpay_order_id: string;
+  razorpay_signature: string;
+}
+
 interface RazorpayOptions {
   key: string;
   amount: number;
@@ -60,7 +66,7 @@ interface RazorpayOptions {
   prefill: { name: string; email: string; contact: string };
   notes: Record<string, string>;
   theme: { color: string };
-  handler: (response: any) => void | Promise<void>;
+  handler: (response: RazorpayResponse) => void | Promise<void>;
   modal: { ondismiss: () => void };
 }
 
@@ -143,7 +149,7 @@ export default function Checkout() {
 
       // 2. Open Razorpay Modal
       const options = {
-        key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || "rzp_test_placeholder",
+        key: orderData.keyId || process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || "rzp_test_placeholder",
         amount: orderData.amount, // paise
         currency: orderData.currency,
         order_id: orderData.orderId,
@@ -163,7 +169,7 @@ export default function Checkout() {
         theme: {
           color: "#C97C2E",
         },
-        handler: async function (response: any) {
+        handler: async function (response: RazorpayResponse) {
           // 3. Verify Payment Signature on Server
           try {
             const verifyRes = await fetch('/api/razorpay/verify', {
@@ -236,8 +242,8 @@ export default function Checkout() {
               animate={{ opacity: 1, y: 0 }}
               className="bg-white rounded-3xl border border-stone-200 shadow-xl p-10 text-center"
             >
-              <div className="w-16 h-16 bg-[var(--copper)]/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Mail className="w-8 h-8 text-[var(--copper)]" />
+              <div className="w-16 h-16 bg-(--copper)/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Mail className="w-8 h-8 text-(--copper)" />
               </div>
               <h2 className="text-3xl font-serif font-bold text-zinc-900 mb-3">We&apos;ll be in touch!</h2>
               <p className="text-zinc-500 text-sm mb-8 max-w-md mx-auto">
@@ -245,7 +251,7 @@ export default function Checkout() {
               </p>
               <a
                 href="mailto:contact@syncretreat.com"
-                className="inline-flex items-center gap-2 bg-[var(--copper)] text-white px-8 py-3.5 rounded-full font-bold uppercase tracking-wide text-sm hover:bg-[var(--copper-dark)] transition-colors"
+                className="inline-flex items-center gap-2 bg-(--copper) text-white px-8 py-3.5 rounded-full font-bold uppercase tracking-wide text-sm hover:bg-(--copper-dark) transition-colors"
               >
                 Email Us Directly
                 <ArrowRight className="w-4 h-4" />
@@ -268,16 +274,16 @@ export default function Checkout() {
               className="bg-white p-10 md:p-14 rounded-[2.5rem] border border-stone-200 shadow-2xl text-center relative overflow-hidden"
             >
               <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute -top-1/2 -right-1/2 w-full h-full rounded-full bg-[var(--copper)]/5 blur-3xl" />
+                <div className="absolute -top-1/2 -right-1/2 w-full h-full rounded-full bg-(--copper)/5 blur-3xl" />
               </div>
               <div className="relative z-10 flex flex-col items-center">
                 <motion.div
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ delay: 0.2, type: "spring", stiffness: 200, damping: 20 }}
-                  className="w-24 h-24 bg-[var(--copper)]/10 rounded-full flex items-center justify-center mb-8 mx-auto"
+                  className="w-24 h-24 bg-(--copper)/10 rounded-full flex items-center justify-center mb-8 mx-auto"
                 >
-                  <CheckCircle2 className="w-12 h-12 text-[var(--copper)]" />
+                  <CheckCircle2 className="w-12 h-12 text-(--copper)" />
                 </motion.div>
                 <h2 className="text-4xl font-serif font-bold text-zinc-900 mb-4">{isStandardPlan ? "Deposit Received!" : "Payment Received!"}</h2>
                 <p className="text-zinc-500 mb-2 max-w-md mx-auto">
@@ -286,7 +292,7 @@ export default function Checkout() {
                 <p className="text-zinc-400 text-sm mb-10">A confirmation has been sent to {form.email}. Our team will follow up within 24 hours.</p>
                 <Link
                   href="/"
-                  className="inline-flex items-center gap-2 bg-[var(--copper)] hover:bg-[var(--copper-dark)] text-white px-8 py-4 rounded-full font-bold transition-all hover:shadow-lg"
+                  className="inline-flex items-center gap-2 bg-(--copper) hover:bg-(--copper-dark) text-white px-8 py-4 rounded-full font-bold transition-all hover:shadow-lg"
                 >
                   Return to Home
                   <ArrowRight className="w-5 h-5" />
@@ -327,12 +333,12 @@ export default function Checkout() {
                         onClick={() => update("plan", plan.id)}
                         className={`relative text-left p-4 rounded-2xl border-2 transition-all duration-200 cursor-pointer ${
                           form.plan === plan.id
-                            ? "border-[var(--copper)] bg-[var(--copper)]/5"
+                            ? "border-(--copper) bg-(--copper)/5"
                             : "border-stone-200 hover:border-stone-300 bg-stone-50"
                         }`}
                       >
                         {plan.popular && (
-                          <span className="absolute top-2 right-2 bg-[var(--copper)] text-white text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full">
+                          <span className="absolute top-2 right-2 bg-(--copper) text-white text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full">
                             Popular
                           </span>
                         )}
@@ -340,7 +346,7 @@ export default function Checkout() {
                           {plan.duration}
                         </p>
                         <p className="text-sm font-bold text-zinc-900">{plan.label}</p>
-                        <p className="text-xs text-[var(--copper)] font-mono mt-1">
+                        <p className="text-xs text-(--copper) font-mono mt-1">
                           {plan.price > 0 ? `₹${plan.price.toLocaleString("en-IN")}` : "Custom Quote"}
                         </p>
                       </button>
@@ -363,7 +369,7 @@ export default function Checkout() {
                           onClick={() => update("retreatDate", date.value)}
                           className={`p-3 rounded-xl border-2 text-center transition-all duration-200 cursor-pointer ${
                             form.retreatDate === date.value
-                              ? "border-[var(--copper)] bg-[var(--copper)]/8 text-[var(--copper)]"
+                              ? "border-(--copper) bg-(--copper)/8 text-(--copper)"
                               : "border-stone-200 hover:border-stone-300 text-zinc-700 bg-stone-50"
                           }`}
                         >
@@ -380,12 +386,12 @@ export default function Checkout() {
                         <p className="text-xs text-zinc-500 mt-0.5">Premium suite · private balcony · enhanced amenities</p>
                       </div>
                       <div className="flex items-center gap-3">
-                        <span className="text-sm font-mono font-bold text-[var(--copper)]">+₹19,999</span>
+                        <span className="text-sm font-mono font-bold text-(--copper)">+₹19,999</span>
                         <button
                           type="button"
                           onClick={() => update("upgradeRoom", !form.upgradeRoom)}
                           className={`relative w-12 h-6 rounded-full transition-all duration-300 cursor-pointer ${
-                            form.upgradeRoom ? "bg-[var(--copper)]" : "bg-stone-300"
+                            form.upgradeRoom ? "bg-(--copper)" : "bg-stone-300"
                           }`}
                         >
                           <div className={`absolute top-0.5 w-5 h-5 bg-white rounded-full shadow transition-all duration-300 ${
@@ -412,7 +418,7 @@ export default function Checkout() {
                         value={form.name}
                         onChange={(e) => update("name", e.target.value)}
                         placeholder="Your full name"
-                        className="w-full border border-stone-200 rounded-xl px-4 py-3 text-sm text-zinc-900 placeholder-stone-400 focus:outline-none focus:border-[var(--copper)] focus:ring-2 focus:ring-[var(--copper)]/10 transition-all bg-stone-50"
+                        className="w-full border border-stone-200 rounded-xl px-4 py-3 text-sm text-zinc-900 placeholder-stone-400 focus:outline-none focus:border-(--copper) focus:ring-2 focus:ring-(--copper)/10 transition-all bg-stone-50"
                       />
                     </div>
                     <div>
@@ -423,7 +429,7 @@ export default function Checkout() {
                         value={form.email}
                         onChange={(e) => update("email", e.target.value)}
                         placeholder="your@email.com"
-                        className="w-full border border-stone-200 rounded-xl px-4 py-3 text-sm text-zinc-900 placeholder-stone-400 focus:outline-none focus:border-[var(--copper)] focus:ring-2 focus:ring-[var(--copper)]/10 transition-all bg-stone-50"
+                        className="w-full border border-stone-200 rounded-xl px-4 py-3 text-sm text-zinc-900 placeholder-stone-400 focus:outline-none focus:border-(--copper) focus:ring-2 focus:ring-(--copper)/10 transition-all bg-stone-50"
                         suppressHydrationWarning
                       />
                     </div>
@@ -435,7 +441,7 @@ export default function Checkout() {
                         value={form.phone}
                         onChange={(e) => update("phone", e.target.value)}
                         placeholder="+91 98765 43210"
-                        className="w-full border border-stone-200 rounded-xl px-4 py-3 text-sm text-zinc-900 placeholder-stone-400 focus:outline-none focus:border-[var(--copper)] focus:ring-2 focus:ring-[var(--copper)]/10 transition-all bg-stone-50"
+                        className="w-full border border-stone-200 rounded-xl px-4 py-3 text-sm text-zinc-900 placeholder-stone-400 focus:outline-none focus:border-(--copper) focus:ring-2 focus:ring-(--copper)/10 transition-all bg-stone-50"
                       />
                     </div>
                     <div>
@@ -445,7 +451,7 @@ export default function Checkout() {
                         value={form.city}
                         onChange={(e) => update("city", e.target.value)}
                         placeholder="e.g. Bangalore"
-                        className="w-full border border-stone-200 rounded-xl px-4 py-3 text-sm text-zinc-900 placeholder-stone-400 focus:outline-none focus:border-[var(--copper)] focus:ring-2 focus:ring-[var(--copper)]/10 transition-all bg-stone-50"
+                        className="w-full border border-stone-200 rounded-xl px-4 py-3 text-sm text-zinc-900 placeholder-stone-400 focus:outline-none focus:border-(--copper) focus:ring-2 focus:ring-(--copper)/10 transition-all bg-stone-50"
                       />
                     </div>
                   </div>
@@ -456,7 +462,7 @@ export default function Checkout() {
                       onChange={(e) => update("notes", e.target.value)}
                       placeholder="Dietary requirements, goals, team size for enterprise..."
                       rows={3}
-                      className="w-full border border-stone-200 rounded-xl px-4 py-3 text-sm text-zinc-900 placeholder-stone-400 focus:outline-none focus:border-[var(--copper)] focus:ring-2 focus:ring-[var(--copper)]/10 transition-all bg-stone-50 resize-none"
+                      className="w-full border border-stone-200 rounded-xl px-4 py-3 text-sm text-zinc-900 placeholder-stone-400 focus:outline-none focus:border-(--copper) focus:ring-2 focus:ring-(--copper)/10 transition-all bg-stone-50 resize-none"
                     />
                   </div>
                 </div>
@@ -476,7 +482,7 @@ export default function Checkout() {
                             </p>
                           )}
                           {isStandardPlan && form.upgradeRoom && (
-                            <p className="text-xs text-[var(--copper)] mt-0.5">+ Room Upgrade (₹19,999)</p>
+                            <p className="text-xs text-(--copper) mt-0.5">+ Room Upgrade (₹19,999)</p>
                           )}
                         </>
                       )}
@@ -496,7 +502,7 @@ export default function Checkout() {
                     type="submit"
                     disabled={isProcessing}
                     style={{ background: "var(--copper)" }}
-                    className="w-full py-4 rounded-full flex items-center justify-center gap-3 text-white font-bold uppercase tracking-wide text-sm shadow-xl shadow-[var(--copper)]/25 hover:bg-[var(--copper-dark)] hover:shadow-[var(--copper)]/40 hover:scale-[1.01] disabled:opacity-60 disabled:cursor-not-allowed transition-all duration-300 cursor-pointer"
+                    className="w-full py-4 rounded-full flex items-center justify-center gap-3 text-white font-bold uppercase tracking-wide text-sm shadow-xl shadow-(--copper)/25 hover:bg-(--copper-dark) hover:shadow-(--copper)/40 hover:scale-[1.01] disabled:opacity-60 disabled:cursor-not-allowed transition-all duration-300 cursor-pointer"
                   >
                     {isProcessing ? (
                       <>

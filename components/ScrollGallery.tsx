@@ -80,7 +80,7 @@ function MobileGallery() {
     >
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
-          <span className="text-xs font-mono tracking-[0.4em] text-[var(--copper)] uppercase mb-2 block">
+          <span className="text-xs font-mono tracking-[0.4em] text-(--copper) uppercase mb-2 block">
             VIBE GALLERY
           </span>
           <h2 className="text-3xl font-serif font-medium tracking-tight text-stone-900">
@@ -109,7 +109,7 @@ function MobileGallery() {
               <h3 className="text-base font-bold text-stone-950 tracking-tight leading-none">
                 {item.title}
               </h3>
-              <p className="text-[10px] font-mono text-[var(--copper)] uppercase tracking-wider mt-1">
+              <p className="text-[10px] font-mono text-(--copper) uppercase tracking-wider mt-1">
                 {item.subtitle}
               </p>
             </div>

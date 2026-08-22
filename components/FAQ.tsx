@@ -45,7 +45,7 @@ export default function FAQ() {
     <section id="faq" className="bg-white text-zinc-900 py-24 px-6 md:px-12 lg:px-24 border-t border-stone-200">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-16">
-          <span className="text-xs font-mono tracking-[0.4em] text-[var(--copper)] uppercase block mb-2">QUESTIONS</span>
+          <span className="text-xs font-mono tracking-[0.4em] text-(--copper) uppercase block mb-2">QUESTIONS</span>
           <h2 className="text-3xl md:text-5xl font-serif font-medium tracking-tight">Frequently Asked Questions</h2>
         </div>
 
@@ -56,7 +56,7 @@ export default function FAQ() {
               <div key={idx} className="border-b border-stone-200 pb-4">
                 <button
                   onClick={() => setOpenIdx(isOpen ? null : idx)}
-                  className="w-full flex items-center justify-between py-4 text-left font-serif font-bold text-lg md:text-xl text-zinc-900 hover:text-[var(--copper)] transition-colors cursor-pointer"
+                  className="w-full flex items-center justify-between py-4 text-left font-serif font-bold text-lg md:text-xl text-zinc-900 hover:text-(--copper) transition-colors cursor-pointer"
                 >
                   <span>{faq.question}</span>
                   {isOpen ? <Minus size={18} /> : <Plus size={18} />}

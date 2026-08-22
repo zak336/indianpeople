@@ -10,9 +10,9 @@ export const metadata: Metadata = {
 
 export default function GeoBlockedPage() {
   return (
-    <div className="min-h-screen bg-[var(--basalt)] text-white flex flex-col items-center justify-center px-6 text-center">
+    <div className="min-h-screen bg-(--basalt) text-white flex flex-col items-center justify-center px-6 text-center">
       <div className="max-w-md">
-        <span className="text-xs font-mono tracking-[0.4em] text-[var(--copper)] uppercase mb-6 block">
+        <span className="text-xs font-mono tracking-[0.4em] text-(--copper) uppercase mb-6 block">
           Restricted Access
         </span>
         <h1 className="text-3xl md:text-5xl font-serif font-medium tracking-tight mb-6">

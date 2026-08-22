@@ -24,7 +24,7 @@ export default function Coliving() {
 
         {/* Header */}
         <div className="max-w-3xl mb-16">
-          <span className="text-xs font-mono tracking-[0.4em] text-[var(--copper)] uppercase mb-2 block">
+          <span className="text-xs font-mono tracking-[0.4em] text-(--copper) uppercase mb-2 block">
             THE EXPERIENCE
           </span>
           <h2 className="text-3xl md:text-5xl font-serif font-medium tracking-tight">
@@ -54,7 +54,7 @@ export default function Coliving() {
                 src={img.src}
                 sizes="(max-width: 768px) 100vw, 33vw"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </motion.div>
           ))}
         </div>

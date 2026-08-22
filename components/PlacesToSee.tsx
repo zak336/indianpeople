@@ -52,7 +52,7 @@ export default function PlacesToSee() {
 
         {/* Header */}
         <div className="max-w-3xl mb-16">
-          <span className="text-xs font-mono tracking-[0.4em] text-[var(--copper)] uppercase mb-2 block">
+          <span className="text-xs font-mono tracking-[0.4em] text-(--copper) uppercase mb-2 block">
             DESTINATIONS
           </span>
           <h2 className="text-3xl md:text-5xl font-serif font-medium tracking-tight">
@@ -74,7 +74,7 @@ export default function PlacesToSee() {
               transition={{ delay: idx * 0.1, duration: 0.5 }}
               className={`group flex flex-col rounded-3xl overflow-hidden border transition-all duration-300 ${
                 dest.highlight
-                  ? "bg-[var(--basalt)] border-[var(--copper)]/30 shadow-xl shadow-[var(--copper)]/10"
+                  ? "bg-(--basalt) border-(--copper)/30 shadow-xl shadow-(--copper)/10"
                   : "bg-stone-50 border-stone-200 hover:shadow-lg hover:border-stone-300"
               }`}
             >
@@ -88,7 +88,7 @@ export default function PlacesToSee() {
                   className="object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent" />
                 {/* Status badge */}
                 <div className={`absolute top-3 left-3 flex items-center gap-1.5 px-3 py-1 rounded-full text-[9px] font-mono font-bold uppercase tracking-wider border ${dest.statusColor} ${dest.highlight ? "bg-emerald-500 text-white border-emerald-400" : ""}`}>
                   {dest.status === "Next Up" && <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />}
@@ -97,9 +97,9 @@ export default function PlacesToSee() {
               </div>
 
               {/* Content */}
-              <div className="p-6 flex-grow flex flex-col">
+              <div className="p-6 grow flex flex-col">
                 <div className="flex items-center gap-1.5 mb-2">
-                  <MapPin size={11} className={dest.highlight ? "text-[var(--copper-light)]" : "text-[var(--copper)]"} />
+                  <MapPin size={11} className={dest.highlight ? "text-(--copper-light)" : "text-(--copper)"} />
                   <span className={`text-[10px] font-mono uppercase tracking-wider ${dest.highlight ? "text-zinc-400" : "text-zinc-400"}`}>
                     {dest.region}
                   </span>
@@ -107,17 +107,17 @@ export default function PlacesToSee() {
                 <h3 className={`text-lg font-serif font-bold mb-1 ${dest.highlight ? "text-white" : "text-zinc-900"}`}>
                   {dest.title}
                 </h3>
-                <p className={`text-xs font-mono uppercase tracking-wider mb-3 ${dest.highlight ? "text-[var(--copper-light)]" : "text-[var(--copper)]"}`}>
+                <p className={`text-xs font-mono uppercase tracking-wider mb-3 ${dest.highlight ? "text-(--copper-light)" : "text-(--copper)"}`}>
                   {dest.tagline}
                 </p>
-                <p className={`text-sm leading-relaxed flex-grow ${dest.highlight ? "text-zinc-400" : "text-zinc-500"}`}>
+                <p className={`text-sm leading-relaxed grow ${dest.highlight ? "text-zinc-400" : "text-zinc-500"}`}>
                   {dest.description}
                 </p>
 
                 {dest.href && (
                   <Link
                     href={dest.href}
-                    className="mt-5 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-white bg-[var(--copper)] px-4 py-2.5 rounded-full hover:bg-[var(--copper-dark)] transition-colors"
+                    className="mt-5 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-white bg-(--copper) px-4 py-2.5 rounded-full hover:bg-(--copper-dark) transition-colors"
                   >
                     Book Varkala <ArrowRight size={13} />
                   </Link>

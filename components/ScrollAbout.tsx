@@ -53,7 +53,7 @@ export default function About() {
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
           <div className="max-w-2xl">
-            <span className="text-xs font-mono tracking-[0.4em] text-[var(--copper)] uppercase mb-2 block">
+            <span className="text-xs font-mono tracking-[0.4em] text-(--copper) uppercase mb-2 block">
               WHO IT&apos;S FOR
             </span>
             <h2 className="text-3xl md:text-5xl font-serif font-medium tracking-tight">
@@ -122,7 +122,7 @@ export default function About() {
 
             {/* Text */}
             <div className="w-full md:w-1/2 flex flex-col justify-center">
-              <span className="text-xs font-mono text-[var(--copper)] mb-2 uppercase tracking-[0.2em]">
+              <span className="text-xs font-mono text-(--copper) mb-2 uppercase tracking-[0.2em]">
                 {active.index} // Sync Retreat
               </span>
               <h3 className="text-2xl md:text-3xl font-serif font-bold text-zinc-900 mb-4">

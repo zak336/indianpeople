@@ -20,7 +20,7 @@ export default function FounderCredibility() {
           
           {/* Text Content */}
           <motion.div style={{ opacity }} className="max-w-xl">
-            <span className="text-xs font-mono tracking-[0.4em] text-[var(--copper)] uppercase mb-4 block">
+            <span className="text-xs font-mono tracking-[0.4em] text-(--copper) uppercase mb-4 block">
               THE CREDIBILITY
             </span>
             <h2 className="text-3xl md:text-5xl font-serif font-medium tracking-tight text-zinc-900 mb-6">
@@ -55,7 +55,7 @@ export default function FounderCredibility() {
           </motion.div>
 
           {/* Video / Walkthrough */}
-          <motion.div style={{ y }} className="relative h-[400px] md:h-[500px] w-full rounded-2xl overflow-hidden shadow-2xl shadow-stone-900/10 border border-stone-200 bg-zinc-200">
+          <motion.div style={{ y }} className="relative h-100 md:h-125 w-full rounded-2xl overflow-hidden shadow-2xl shadow-stone-900/10 border border-stone-200 bg-zinc-200">
             {/* 30-sec property/founder walkthrough clip */}
             <video
               autoPlay
@@ -70,7 +70,7 @@ export default function FounderCredibility() {
             </video>
             
             {/* Overlay gradient for readability */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+            <div className="absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
             
             <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between pointer-events-none">
               <span className="flex items-center gap-2 bg-white/20 backdrop-blur-md border border-white/20 px-3 py-1.5 rounded-full text-[10px] font-mono text-white tracking-widest uppercase">

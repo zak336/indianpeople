@@ -47,7 +47,7 @@ export default function Scheduler() {
 
         {/* Header */}
         <div className="mb-14">
-          <span className="text-xs font-mono tracking-[0.4em] text-[var(--copper)] uppercase mb-2 block">
+          <span className="text-xs font-mono tracking-[0.4em] text-(--copper) uppercase mb-2 block">
             RETREAT SCHEDULE · 2026–27
           </span>
           <h2 className="text-3xl md:text-5xl font-serif font-medium tracking-tight">
@@ -70,7 +70,7 @@ export default function Scheduler() {
                   onClick={() => setSelectedPlan(plan.id)}
                   className={`px-5 py-2.5 rounded-xl text-xs font-mono uppercase tracking-wider transition-all duration-300 cursor-pointer ${
                     selectedPlan === plan.id
-                      ? "bg-[var(--copper)] text-white shadow-md"
+                      ? "bg-(--copper) text-white shadow-md"
                       : "text-zinc-500 hover:text-zinc-900"
                   }`}
                 >
@@ -102,7 +102,7 @@ export default function Scheduler() {
                       onClick={() => setSelectedDate(idx)}
                       className={`relative text-left p-4 rounded-2xl border-2 transition-all duration-300 cursor-pointer ${
                         isSelected
-                          ? "border-[var(--copper)] bg-[var(--copper)]/8 shadow-md"
+                          ? "border-(--copper) bg-(--copper)/8 shadow-md"
                           : "border-stone-200 hover:border-stone-400 hover:bg-stone-50"
                       }`}
                     >
@@ -112,7 +112,7 @@ export default function Scheduler() {
                         → {getEndDate(idx, selectedPlan).formatted}
                       </p>
                       {isSelected && (
-                        <div className="absolute top-2 right-2 w-5 h-5 rounded-full bg-[var(--copper)] text-white flex items-center justify-center">
+                        <div className="absolute top-2 right-2 w-5 h-5 rounded-full bg-(--copper) text-white flex items-center justify-center">
                           <Check size={11} />
                         </div>
                       )}
@@ -139,7 +139,7 @@ export default function Scheduler() {
               <Link
                 href="/checkout"
                 style={{ background: "var(--copper)" }}
-                className="w-full py-4 rounded-full flex items-center justify-center gap-2 text-white font-sans font-bold uppercase tracking-wide cursor-pointer shadow-lg shadow-[var(--copper)]/20 hover:shadow-[var(--copper)]/40 hover:scale-[1.02] transition-all text-center text-sm"
+                className="w-full py-4 rounded-full flex items-center justify-center gap-2 text-white font-sans font-bold uppercase tracking-wide cursor-pointer shadow-lg shadow-(--copper)/20 hover:shadow-(--copper)/40 hover:scale-[1.02] transition-all text-center text-sm"
               >
                 <Calendar size={16} />
                 <span>Book This Date — ₹29,999 Deposit</span>
@@ -153,7 +153,7 @@ export default function Scheduler() {
           {/* Right: Documents */}
           <div>
             <div className="mb-10">
-              <span className="text-xs font-mono tracking-[0.4em] text-[var(--copper)] uppercase mb-2 block">
+              <span className="text-xs font-mono tracking-[0.4em] text-(--copper) uppercase mb-2 block">
                 RESOURCES
               </span>
               <h2 className="text-3xl md:text-4xl font-serif font-medium tracking-tight">
@@ -167,17 +167,17 @@ export default function Scheduler() {
                   key={idx}
                   href={`/documents/${doc.file}`}
                   download
-                  className="flex items-center justify-between w-full bg-stone-50 hover:bg-[var(--copper)]/5 border border-stone-200 hover:border-[var(--copper)]/30 text-zinc-800 font-sans font-bold py-4 px-6 rounded-2xl transition-all duration-300 group shadow-sm hover:shadow-md"
+                  className="flex items-center justify-between w-full bg-stone-50 hover:bg-(--copper)/5 border border-stone-200 hover:border-(--copper)/30 text-zinc-800 font-sans font-bold py-4 px-6 rounded-2xl transition-all duration-300 group shadow-sm hover:shadow-md"
                 >
                   <span className="text-xs md:text-sm text-left leading-normal">{doc.title}</span>
-                  <ArrowRight className="w-4 h-4 text-zinc-400 group-hover:text-[var(--copper)] shrink-0 transition-colors" />
+                  <ArrowRight className="w-4 h-4 text-zinc-400 group-hover:text-(--copper) shrink-0 transition-colors" />
                 </a>
               ))}
             </div>
 
             {/* Enterprise teaser */}
-            <div className="bg-[var(--basalt)] text-white rounded-3xl p-8">
-              <span className="text-xs font-mono tracking-[0.3em] text-[var(--copper-light)] uppercase block mb-3">
+            <div className="bg-(--basalt) text-white rounded-3xl p-8">
+              <span className="text-xs font-mono tracking-[0.3em] text-(--copper-light) uppercase block mb-3">
                 CORPORATE & TEAMS
               </span>
               <h3 className="text-xl font-serif font-bold mb-2">Planning a Team Offsite?</h3>
@@ -186,7 +186,7 @@ export default function Scheduler() {
               </p>
               <a
                 href="mailto:contact@syncretreat.com"
-                className="inline-flex items-center gap-2 bg-[var(--copper)] text-white px-6 py-3 rounded-full font-bold text-sm uppercase tracking-wide hover:bg-[var(--copper-dark)] transition-colors"
+                className="inline-flex items-center gap-2 bg-(--copper) text-white px-6 py-3 rounded-full font-bold text-sm uppercase tracking-wide hover:bg-(--copper-dark) transition-colors"
               >
                 Get Enterprise Quote
                 <ArrowRight size={16} />

@@ -33,7 +33,7 @@ export default function Hero() {
             />
           </motion.div>
           {/* Darker gradient overlay for better text legibility */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/80 pointer-events-none" />
+          <div className="absolute inset-0 bg-linear-to-b from-black/70 via-black/40 to-black/80 pointer-events-none" />
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.4),transparent_60%)] pointer-events-none" />
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(201,124,46,0.15),transparent_60%)] pointer-events-none" />
         </div>
@@ -52,7 +52,7 @@ export default function Hero() {
               className="flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-4 py-2"
             >
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <MapPin size={12} className="text-[var(--copper-light)]" />
+              <MapPin size={12} className="text-(--copper-light)" />
               <span className="text-xs font-mono tracking-[0.3em] text-white/90 uppercase">
                 Next Retreat: Varkala, Kerala — Oct 19
               </span>
@@ -62,7 +62,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="text-xs md:text-sm font-mono tracking-[0.5em] text-[var(--copper-light)] uppercase drop-shadow-md"
+              className="text-xs md:text-sm font-mono tracking-[0.5em] text-(--copper-light) uppercase drop-shadow-md"
             >
               Sync Retreat · India
             </motion.p>
@@ -75,7 +75,7 @@ export default function Hero() {
             >
               Work Remotely.
               <br />
-              <span className="italic text-[var(--copper-light)]">Explore India.</span>
+              <span className="italic text-(--copper-light)">Explore India.</span>
             </motion.h1>
 
             <motion.p
@@ -96,7 +96,7 @@ export default function Hero() {
               <Link
                 href="/checkout"
                 style={{ background: "var(--copper)" }}
-                className="px-8 py-4 rounded-full flex items-center gap-3 text-white font-sans font-bold uppercase tracking-wide cursor-pointer shadow-xl shadow-[var(--copper)]/30 hover:shadow-[var(--copper)]/50 hover:scale-105 transition-all duration-300"
+                className="px-8 py-4 rounded-full flex items-center gap-3 text-white font-sans font-bold uppercase tracking-wide cursor-pointer shadow-xl shadow-(--copper)/30 hover:shadow-(--copper)/50 hover:scale-105 transition-all duration-300"
               >
                 <span>Reserve a Spot — ₹29,999 Deposit</span>
                 <ChevronRight size={20} />
@@ -127,15 +127,15 @@ export default function Hero() {
               transition={{ delay: 0.9 }}
               className="flex items-center gap-8 mt-8 text-[10px] md:text-xs font-mono uppercase tracking-[0.25em] border-t border-white/20 pt-6"
             >
-              <a href="#about" className="hover:text-[var(--copper-light)] transition-colors duration-300">
+              <a href="#about" className="hover:text-(--copper-light) transition-colors duration-300">
                 Who It&apos;s For
               </a>
               <span className="w-1.5 h-1.5 rounded-full bg-white/30" />
-              <a href="#destinations" className="hover:text-[var(--copper-light)] transition-colors duration-300">
+              <a href="#destinations" className="hover:text-(--copper-light) transition-colors duration-300">
                 Destinations
               </a>
               <span className="w-1.5 h-1.5 rounded-full bg-white/30" />
-              <a href="#pricing" className="hover:text-[var(--copper-light)] transition-colors duration-300">
+              <a href="#pricing" className="hover:text-(--copper-light) transition-colors duration-300">
                 Plans & Pricing
               </a>
             </motion.div>

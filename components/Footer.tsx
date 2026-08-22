@@ -49,7 +49,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-[var(--basalt)] border-t border-white/5 text-white w-full">
+    <footer className="bg-(--basalt) border-t border-white/5 text-white w-full">
       <div className="w-full px-6 md:px-12 py-8 max-w-7xl mx-auto">
 
         {/* Top: brand + newsletter + links */}
@@ -58,7 +58,7 @@ export default function Footer() {
           <div className="flex flex-col gap-6 md:max-w-md w-full">
             <div>
               <span className="text-white text-2xl font-black tracking-tight">
-                SyncRetreat<span className="text-[var(--copper)]">.</span>
+                SyncRetreat<span className="text-(--copper)">.</span>
               </span>
               <p className="text-zinc-500 text-xs font-mono mt-1 uppercase tracking-wider">
                 Work Remotely. Explore India.
@@ -81,7 +81,7 @@ export default function Footer() {
               <button
                 type="submit"
                 disabled={status === "loading"}
-                className="text-slate-400 hover:text-[var(--copper)] transition-colors"
+                className="text-slate-400 hover:text-(--copper) transition-colors"
               >
                 {status === "success" ? (
                   <BsCheckLg className="w-4 h-4 text-emerald-500" />
@@ -99,7 +99,7 @@ export default function Footer() {
                   aria-label={label}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 hover:bg-[var(--copper)]/20 hover:text-[var(--copper)] hover:border-[var(--copper)]/50 transition-all duration-300 shadow-sm"
+                  className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 hover:bg-(--copper)/20 hover:text-(--copper) hover:border-(--copper)/50 transition-all duration-300 shadow-sm"
                 >
                   <Icon className="w-4 h-4" />
                 </a>
@@ -113,7 +113,7 @@ export default function Footer() {
               <Link
                 key={label}
                 href={href}
-                className="hover:text-[var(--copper)] transition-colors"
+                className="hover:text-(--copper) transition-colors"
               >
                 {label}
               </Link>
@@ -164,8 +164,8 @@ export default function Footer() {
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-4 border-t border-white/10 text-[10px] md:text-xs text-slate-500 font-medium">
           <p>© 2026 SYNCRETREAT LLP. Engineered for focus.</p>
           <div className="flex items-center gap-4 text-zinc-600">
-            <Link href="/terms" className="hover:text-[var(--copper)] transition-colors">Terms</Link>
-            <Link href="/privacy" className="hover:text-[var(--copper)] transition-colors">Privacy</Link>
+            <Link href="/terms" className="hover:text-(--copper) transition-colors">Terms</Link>
+            <Link href="/privacy" className="hover:text-(--copper) transition-colors">Privacy</Link>
             <p>contact@syncretreat.com</p>
           </div>
         </div>
