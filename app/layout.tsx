@@ -84,10 +84,6 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  verification: {
-    google: "your-google-verification-code",
-    yandex: "your-yandex-verification-code",
-  },
   icons: {
     icon: "/logo.jpeg",
     apple: "/logo.jpeg",

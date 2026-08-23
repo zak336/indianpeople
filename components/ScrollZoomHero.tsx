@@ -19,7 +19,7 @@ export default function Hero() {
   const y = useTransform(scrollYProgress, [0, 1], [0, -80]);
 
   return (
-    <div ref={ref} id="home" className="relative z-0 h-[100vh]">
+    <div ref={ref} id="home" className="relative z-0 h-screen">
       <section className="sticky top-0 h-screen overflow-hidden">
         <div className="relative w-full h-full">
           <motion.div className="absolute inset-0" style={{ scale }}>
@@ -43,7 +43,6 @@ export default function Hero() {
           style={{ opacity, y }}
         >
           <div className="flex flex-col items-center gap-5 text-center text-white px-4 max-w-5xl">
-
             {/* Next retreat badge */}
             <motion.div
               initial={{ opacity: 0, y: -10 }}
@@ -75,7 +74,9 @@ export default function Hero() {
             >
               Work Remotely.
               <br />
-              <span className="italic text-(--copper-light)">Explore India.</span>
+              <span className="italic text-(--copper-light)">
+                Explore India.
+              </span>
             </motion.h1>
 
             <motion.p
@@ -84,7 +85,9 @@ export default function Hero() {
               transition={{ delay: 0.5 }}
               className="text-base md:text-lg font-sans font-medium tracking-wide max-w-2xl mx-auto drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)] text-zinc-100 mt-2"
             >
-              A 14-day curated workation combining enterprise-grade infrastructure with coastal living. Zero operational friction. Maximum output.
+              A 14-day curated workation combining enterprise-grade
+              infrastructure with coastal living. Zero operational friction.
+              Maximum output.
             </motion.p>
 
             <motion.div
@@ -127,15 +130,24 @@ export default function Hero() {
               transition={{ delay: 0.9 }}
               className="flex items-center gap-8 mt-8 text-[10px] md:text-xs font-mono uppercase tracking-[0.25em] border-t border-white/20 pt-6"
             >
-              <a href="#about" className="hover:text-(--copper-light) transition-colors duration-300">
+              <a
+                href="#about"
+                className="hover:text-(--copper-light) transition-colors duration-300"
+              >
                 Who It&apos;s For
               </a>
               <span className="w-1.5 h-1.5 rounded-full bg-white/30" />
-              <a href="#destinations" className="hover:text-(--copper-light) transition-colors duration-300">
+              <a
+                href="#destinations"
+                className="hover:text-(--copper-light) transition-colors duration-300"
+              >
                 Destinations
               </a>
               <span className="w-1.5 h-1.5 rounded-full bg-white/30" />
-              <a href="#pricing" className="hover:text-(--copper-light) transition-colors duration-300">
+              <a
+                href="#pricing"
+                className="hover:text-(--copper-light) transition-colors duration-300"
+              >
                 Plans & Pricing
               </a>
             </motion.div>

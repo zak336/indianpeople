@@ -2,22 +2,25 @@
 import { motion } from "framer-motion";
 import { Check, ChevronRight, Mail, Star, Infinity } from "lucide-react";
 import Link from "next/link";
+import { PRICING } from "@/lib/pricing";
 
 const plans = [
   {
     id: "7day",
     tag: "TOURIST PLAN",
     title: "7-Day Escape",
-    price: "₹79,999",
-    per: "per person",
+    price: PRICING.plan7Day.priceLabel,
+    per: `Early Bird (Standard: ${PRICING.plan7Day.standardPriceLabel})`,
     description: "A curated 7-day workation designed for Indian travellers who want to experience India's scenic locations while staying productive.",
     features: [
-      "Private ensuite room",
-      "Co-working workspace access",
-      "All meals included",
-      "Weekend exploration trips",
-      "High-speed internet",
-      "Airport transfers",
+      "6 nights, boutique 3–4★ Varkala property",
+      "Breakfast + dinner daily & 2 excursion lunches",
+      "Round-trip TRV airport pickup & drop",
+      "All local AC transport included",
+      "Curated excursions & 1 signature experience",
+      "Group dinner & on-ground trip host",
+      "Backup WiFi/hotspot access at stay",
+      "GST included in quoted price",
     ],
     cta: "Book Now",
     href: "/checkout",
@@ -28,17 +31,18 @@ const plans = [
     id: "14day",
     tag: "WORKATION PLAN",
     title: "14-Day Deep Work",
-    price: "₹79,999",
-    per: "per person",
+    price: PRICING.plan14Day.priceLabel,
+    per: `Early Bird (Standard: ${PRICING.plan14Day.standardPriceLabel})`,
     description: "Two full weeks of structured deep work in a scenic Indian location. The flagship program for remote workers, freelancers & founders.",
     features: [
-      "Private ensuite room",
-      "Dedicated co-working desk",
-      "All meals included",
-      "Weekend exploration trips (2)",
-      "Dual-WAN redundant internet",
-      "Airport transfers",
-      "Community of 10–15 peers",
+      "13 nights boutique accommodation",
+      "Breakfast + dinner daily & 2 excursion lunches",
+      "Dedicated desk, ergonomic seat & high-speed WiFi",
+      "2 curated weekend day trips & local transport",
+      "2x/week community evening sessions",
+      "Standard laundry service included",
+      "Round-trip TRV airport pickup & drop",
+      "On-ground host & welcome kit",
     ],
     cta: "Book Now — Most Popular",
     href: "/checkout",
@@ -69,7 +73,7 @@ const plans = [
     id: "yearly",
     tag: "YEARLY PASS",
     title: "Unlimited India",
-    price: "₹1,49,999",
+    price: PRICING.yearlyPass.priceLabel,
     per: "2 trips · anywhere · anytime",
     description: "The ultimate remote worker pass. Book any 2 retreats across any of our India locations throughout the year.",
     features: [
@@ -88,15 +92,18 @@ const plans = [
   {
     id: "upgrade",
     tag: "ADD-ON",
-    title: "Room Upgrade",
-    price: "+₹19,999",
+    title: "Premium Bundle",
+    price: PRICING.premiumBundle.priceLabel,
     per: "per booking",
-    description: "Upgrade to a premium suite with enhanced amenities — larger room, premium bedding, private balcony with scenic view.",
+    description: "The ultimate retreat upgrade. Bundles our premium room with exclusive activities based on your selected plan.",
     features: [
-      "Premium suite category",
-      "Private balcony / terrace",
-      "Enhanced bedding & bath",
-      "Available on 7 & 14-day plans",
+      "Premium suite & private balcony",
+      "Ayurveda spa & massage session",
+      "Surfing & 1:1 content session",
+      "Extra weekend excursion",
+      "Private meeting room day-pass",
+      "Extended pre/post stay nights",
+      "Early arrival & late departure",
     ],
     cta: "Add at Checkout",
     href: "/checkout",
@@ -167,9 +174,8 @@ export default function Programs() {
           ))}
         </motion.div>
 
-        {/* Deposit note */}
         <p className="text-center text-xs font-mono text-zinc-400 uppercase tracking-widest mt-10">
-          All bookings require a ₹29,999 refundable deposit · Full amount due 14 days before retreat
+          All bookings require a {PRICING.plan14Day.depositLabel} refundable deposit · Full amount due 14 days before retreat
         </p>
       </div>
     </section>

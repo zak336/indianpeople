@@ -13,6 +13,7 @@ import Scheduler from "@/components/Scheduler";
 import BookingCard from "@/components/BookingCard";
 import FounderCredibility from "@/components/FounderCredibility";
 import { useEffect } from "react";
+import { PRICING } from "@/lib/pricing";
 
 export default function Home() {
   useEffect(() => {
@@ -61,7 +62,7 @@ export default function Home() {
       "@type": "Offer",
       url: "https://india.syncretreat.com/checkout",
       priceCurrency: "INR",
-      price: "79999",
+      price: PRICING.plan7Day.price.toString(),
       availability: "https://schema.org/InStock",
       itemCondition: "https://schema.org/NewCondition",
     },
@@ -78,7 +79,7 @@ export default function Home() {
       "@type": "Offer",
       url: "https://india.syncretreat.com/checkout",
       priceCurrency: "INR",
-      price: "79999",
+      price: PRICING.plan14Day.price.toString(),
       availability: "https://schema.org/InStock",
       itemCondition: "https://schema.org/NewCondition",
     },
@@ -114,7 +115,7 @@ export default function Home() {
         "@type": "Offer",
         name: "7-Day Tourist Plan",
         url: "https://india.syncretreat.com/checkout",
-        price: "79999",
+        price: PRICING.plan7Day.price.toString(),
         priceCurrency: "INR",
         availability: "https://schema.org/InStock",
       },
@@ -122,7 +123,7 @@ export default function Home() {
         "@type": "Offer",
         name: "14-Day Workation Plan",
         url: "https://india.syncretreat.com/checkout",
-        price: "79999",
+        price: PRICING.plan14Day.price.toString(),
         priceCurrency: "INR",
         availability: "https://schema.org/InStock",
       },

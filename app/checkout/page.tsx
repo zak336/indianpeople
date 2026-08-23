@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
+import { PRICING } from "@/lib/pricing";
 
 // ─── Types ───────────────────────────────────────────────────
 type Plan = "7day" | "14day" | "yearly" | "enterprise";
@@ -21,7 +22,7 @@ interface FormData {
   city: string;
   plan: Plan;
   retreatDate: string;
-  upgradeRoom: boolean;
+  selectedAddons: string[];
   notes: string;
 }
 
@@ -39,14 +40,22 @@ const retreatDates = [
 ];
 
 const plans = [
-  { id: "7day" as Plan, label: "7-Day Tourist Plan", price: 79999, deposit: 29999, duration: "7 days" },
-  { id: "14day" as Plan, label: "14-Day Workation Plan", price: 79999, deposit: 29999, duration: "14 days", popular: true },
-  { id: "yearly" as Plan, label: "Yearly Pass (2 Trips)", price: 149999, deposit: 149999, duration: "2 trips / year" },
+  { id: "7day" as Plan, label: "7-Day Tourist Plan", price: PRICING.plan7Day.price, deposit: PRICING.plan7Day.deposit, duration: "7 days" },
+  { id: "14day" as Plan, label: "14-Day Workation Plan", price: PRICING.plan14Day.price, deposit: PRICING.plan14Day.deposit, duration: "14 days", popular: true },
+  { id: "yearly" as Plan, label: "Yearly Pass (2 Trips)", price: PRICING.yearlyPass.price, deposit: PRICING.yearlyPass.deposit, duration: "2 trips / year" },
   { id: "enterprise" as Plan, label: "Enterprise / Team Offsite", price: 0, deposit: 0, duration: "Custom" },
 ];
 
-const UPGRADE_PRICE = 19999;
-const DEPOSIT = 29999;
+type Addon = { id: string; label: string; description: string; price: number };
+
+const addons7Day: Addon[] = [
+  { id: "premium_bundle", label: "Premium Upgrade Bundle", description: "Premium room upgrade · Ayurveda spa/massage · Surfing lesson/water-sports · 1:1 content session · Early arrival/late departure", price: PRICING.premiumBundle.price },
+];
+
+const addons14Day: Addon[] = [
+  { id: "premium_bundle", label: "Premium Upgrade Bundle", description: "Premium room upgrade · Extra weekend excursion · Ayurveda spa/massage · Private meeting room day-pass · Extended stay", price: PRICING.premiumBundle.price },
+];
+
 
 // ─── Razorpay loader ─────────────────────────────────────────
 interface RazorpayResponse {
@@ -98,14 +107,30 @@ export default function Checkout() {
     city: "",
     plan: "14day",
     retreatDate: retreatDates[0].value,
-    upgradeRoom: false,
+    selectedAddons: [],
     notes: "",
   });
 
   const selectedPlan = plans.find((p) => p.id === form.plan)!;
   const isEnterprise = form.plan === "enterprise";
   const isStandardPlan = form.plan === "7day" || form.plan === "14day";
-  const totalDeposit = isEnterprise ? 0 : selectedPlan.deposit + (isStandardPlan && form.upgradeRoom ? UPGRADE_PRICE : 0);
+
+  const currentAddons = form.plan === "7day" ? addons7Day : form.plan === "14day" ? addons14Day : [];
+  const addonsPrice = currentAddons
+    .filter(a => form.selectedAddons.includes(a.id))
+    .reduce((sum, a) => sum + a.price, 0);
+
+  const totalDeposit = isEnterprise ? 0 : selectedPlan.deposit;
+  const totalPrice = isEnterprise ? 0 : selectedPlan.price + addonsPrice;
+
+  const toggleAddon = (id: string) => {
+    setForm(prev => {
+      const selected = prev.selectedAddons.includes(id)
+        ? prev.selectedAddons.filter(a => a !== id)
+        : [...prev.selectedAddons, id];
+      return { ...prev, selectedAddons: selected };
+    });
+  };
 
   const update = <K extends keyof FormData>(field: K, value: FormData[K]) =>
     setForm((prev) => ({ ...prev, [field]: value }));
@@ -165,7 +190,7 @@ export default function Checkout() {
         notes: {
           plan: selectedPlan.label,
           retreat_date: form.retreatDate,
-          room_upgrade: form.upgradeRoom ? "Yes" : "No",
+          addons: form.selectedAddons.join(", "),
         },
         theme: {
           color: "#C97C2E",
@@ -186,7 +211,7 @@ export default function Checkout() {
                   phone: form.phone,
                   plan: selectedPlan.label,
                   retreatDate: form.retreatDate,
-                  upgradeRoom: form.upgradeRoom,
+                  addons: form.selectedAddons,
                   amount: orderData.amount
                 }
               })
@@ -315,7 +340,7 @@ export default function Checkout() {
                   Reserve Your Spot
                 </h1>
                 <p className="text-zinc-500 max-w-md mx-auto text-sm">
-                  Fill in your details, choose your plan and date. We&apos;ll collect a ₹{DEPOSIT.toLocaleString("en-IN")} refundable deposit to secure your seat.
+                  Fill in your details, choose your plan and date. We&apos;ll collect a ₹{selectedPlan.deposit.toLocaleString("en-IN")} refundable deposit to secure your seat.
                 </p>
               </div>
 
@@ -380,27 +405,36 @@ export default function Checkout() {
                       ))}
                     </div>
 
-                    {/* Room upgrade toggle */}
-                    <div className="mt-5 flex items-center justify-between bg-stone-50 border border-stone-200 rounded-2xl px-5 py-4">
-                      <div>
-                        <p className="text-sm font-bold text-zinc-900">Room Upgrade</p>
-                        <p className="text-xs text-zinc-500 mt-0.5">Premium suite · private balcony · enhanced amenities</p>
+                    {/* Add-ons List */}
+                    {currentAddons.length > 0 && (
+                      <div className="mt-5 space-y-3">
+                        <label className="block text-xs font-mono uppercase tracking-[0.3em] text-zinc-400 mb-2">
+                          Optional Add-ons
+                        </label>
+                        {currentAddons.map(addon => (
+                          <div key={addon.id} className="flex items-center justify-between bg-stone-50 border border-stone-200 rounded-2xl px-5 py-4">
+                            <div>
+                              <p className="text-sm font-bold text-zinc-900">{addon.label}</p>
+                              <p className="text-xs text-zinc-500 mt-0.5">{addon.description}</p>
+                            </div>
+                            <div className="flex items-center gap-3 shrink-0 ml-4">
+                              <span className="text-sm font-mono font-bold text-(--copper)">+₹{addon.price.toLocaleString("en-IN")}</span>
+                              <button
+                                type="button"
+                                onClick={() => toggleAddon(addon.id)}
+                                className={`relative w-12 h-6 rounded-full transition-all duration-300 cursor-pointer shrink-0 ${
+                                  form.selectedAddons.includes(addon.id) ? "bg-(--copper)" : "bg-stone-300"
+                                }`}
+                              >
+                                <div className={`absolute top-0.5 w-5 h-5 bg-white rounded-full shadow transition-all duration-300 ${
+                                  form.selectedAddons.includes(addon.id) ? "left-6" : "left-0.5"
+                                }`} />
+                              </button>
+                            </div>
+                          </div>
+                        ))}
                       </div>
-                      <div className="flex items-center gap-3">
-                        <span className="text-sm font-mono font-bold text-(--copper)">+₹19,999</span>
-                        <button
-                          type="button"
-                          onClick={() => update("upgradeRoom", !form.upgradeRoom)}
-                          className={`relative w-12 h-6 rounded-full transition-all duration-300 cursor-pointer ${
-                            form.upgradeRoom ? "bg-(--copper)" : "bg-stone-300"
-                          }`}
-                        >
-                          <div className={`absolute top-0.5 w-5 h-5 bg-white rounded-full shadow transition-all duration-300 ${
-                            form.upgradeRoom ? "left-6" : "left-0.5"
-                          }`} />
-                        </button>
-                      </div>
-                    </div>
+                    )}
                   </div>
                 )}
 
@@ -482,19 +516,38 @@ export default function Checkout() {
                               {retreatDates.find(d => d.value === form.retreatDate)?.label}
                             </p>
                           )}
-                          {isStandardPlan && form.upgradeRoom && (
-                            <p className="text-xs text-(--copper) mt-0.5">+ Room Upgrade (₹19,999)</p>
+                          {isStandardPlan && form.selectedAddons.length > 0 && (
+                            <div className="mt-1.5 space-y-0.5">
+                              {form.selectedAddons.map(id => {
+                                const addon = currentAddons.find(a => a.id === id);
+                                return addon ? (
+                                  <p key={id} className="text-[11px] text-(--copper) font-mono">
+                                    + {addon.label} (₹{addon.price.toLocaleString("en-IN")})
+                                  </p>
+                                ) : null;
+                              })}
+                            </div>
                           )}
                         </>
                       )}
                     </div>
                     {!isEnterprise && (
                       <div className="text-right">
-                        <p className="text-[10px] font-mono uppercase text-zinc-400 mb-0.5">{isStandardPlan ? "Deposit today" : "Total Price"}</p>
-                        <p className="text-2xl font-serif font-bold text-zinc-900">
-                          ₹{totalDeposit.toLocaleString("en-IN")}
-                        </p>
-                        <p className="text-[10px] text-zinc-400 mt-0.5">Refundable · 30 days notice</p>
+                        {isStandardPlan && (
+                          <div className="mb-3">
+                            <p className="text-[10px] font-mono uppercase text-zinc-400 mb-0.5">Total Tour Price</p>
+                            <p className="text-lg font-serif font-medium text-zinc-700">
+                              ₹{totalPrice.toLocaleString("en-IN")}
+                            </p>
+                          </div>
+                        )}
+                        <div>
+                          <p className="text-[10px] font-mono uppercase text-(--copper) mb-0.5">{isStandardPlan ? "Deposit today" : "Total Price"}</p>
+                          <p className="text-2xl font-serif font-bold text-zinc-900">
+                            ₹{totalDeposit.toLocaleString("en-IN")}
+                          </p>
+                          <p className="text-[10px] text-zinc-400 mt-0.5">Refundable · 30 days notice</p>
+                        </div>
                       </div>
                     )}
                   </div>
