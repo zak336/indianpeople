@@ -2,8 +2,19 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import { Bed, Laptop, Utensils, Wifi, LucideIcon } from "lucide-react";
 
-const features = [
+interface Feature {
+  tabLabel: string;
+  title: string;
+  description: string;
+  index: string;
+  image?: string;
+  images?: { src: string; alt: string }[];
+  amenities?: { label: string; icon: LucideIcon }[];
+}
+
+const features: Feature[] = [
   {
     tabLabel: "The Problem",
     title: "Your best work doesn't happen in the noise.",
@@ -18,9 +29,27 @@ const features = [
     title: "Premium Co-Living & Co-Working Spaces",
     description:
       "Curated properties at India's most scenic locations — coastal villas in Varkala, mountain chalets in Manali, heritage havelis in Jaipur. Each with private ensuite rooms, ergonomic workstations, and fast, redundant internet.",
-    image:
-      "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1469&auto=format&fit=crop",
     index: "02",
+    images: [
+      {
+        src: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=1480&auto=format&fit=crop",
+        alt: "Sync Retreat scenic property exterior"
+      },
+      {
+        src: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1469&auto=format&fit=crop",
+        alt: "Sync Retreat co-working workspace setup"
+      },
+      {
+        src: "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1470&auto=format&fit=crop",
+        alt: "Sync Retreat private ensuite accommodation"
+      }
+    ],
+    amenities: [
+      { label: "Private Ensuite Room", icon: Bed },
+      { label: "Ergonomic Workspace", icon: Laptop },
+      { label: "All Meals Included", icon: Utensils },
+      { label: "High-Speed Internet", icon: Wifi },
+    ]
   },
   {
     tabLabel: "The Community",
@@ -76,7 +105,7 @@ export default function About() {
                   {isActive && (
                     <motion.div
                       layoutId="activeAboutTab"
-                      className="absolute inset-0 bg-copper rounded-full z-0"
+                      className="absolute inset-0 bg-(--copper) rounded-full z-0"
                       transition={{ type: "spring", stiffness: 380, damping: 30 }}
                     />
                   )}
@@ -100,41 +129,110 @@ export default function About() {
 
         {/* Content Panel */}
         <AnimatePresence mode="wait">
-          <motion.div
-            key={activeTab}
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="flex flex-col md:flex-row gap-10 md:gap-16 items-center"
-          >
-            {/* Image */}
-            <div className="w-full md:w-1/2 overflow-hidden rounded-3xl shadow-xl border border-zinc-100 shrink-0 relative aspect-[4/3]">
-              <Image
-                src={active.image}
-                alt={active.title}
-                fill
-                unoptimized
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-            </div>
+          {active.images ? (
+            <motion.div
+              key={activeTab}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="flex flex-col gap-8 w-full"
+            >
+              {/* Text Description Header */}
+              <div className="max-w-3xl">
+                <span className="text-xs font-mono text-(--copper) mb-2 uppercase tracking-[0.2em] block">
+                  {active.index} {"//"} Sync Retreat
+                </span>
+                <h3 className="text-2xl md:text-3xl font-serif font-bold text-zinc-900 mb-3">
+                  {active.title}
+                </h3>
+                <p className="text-zinc-600 font-sans text-sm md:text-base leading-relaxed">
+                  {active.description}
+                </p>
+              </div>
 
-            {/* Text */}
-            <div className="w-full md:w-1/2 flex flex-col justify-center">
-              <span className="text-xs font-mono text-(--copper) mb-2 uppercase tracking-[0.2em]">
-                {active.index} // Sync Retreat
-              </span>
-              <h3 className="text-2xl md:text-3xl font-serif font-bold text-zinc-900 mb-4">
-                {active.title}
-              </h3>
-              <p className="text-zinc-600 font-sans text-sm md:text-base leading-relaxed">
-                {active.description}
-              </p>
-            </div>
-          </motion.div>
+              {/* 3 Image Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 w-full">
+                {active.images.map((img, idx) => (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, scale: 0.98 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: idx * 0.15, duration: 0.6 }}
+                    className="group overflow-hidden rounded-3xl shadow-lg border border-stone-200/50 relative h-64 md:h-72 w-full"
+                  >
+                    <Image
+                      src={img.src}
+                      alt={img.alt}
+                      fill
+                      unoptimized
+                      className="object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out"
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                    />
+                    <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Amenities row */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 w-full mt-2">
+                {active.amenities?.map((item, idx) => {
+                  const IconComp = item.icon;
+                  return (
+                    <div
+                      key={idx}
+                      className="bg-white border border-stone-200 rounded-2xl p-5 text-center shadow-xs hover:shadow-md transition-shadow duration-300 flex flex-col items-center justify-center gap-3"
+                    >
+                      <div className="w-10 h-10 rounded-full bg-stone-50 border border-stone-100 flex items-center justify-center text-zinc-700">
+                        <IconComp size={20} className="text-(--copper)" />
+                      </div>
+                      <p className="text-xs font-mono uppercase tracking-wider text-zinc-600 font-medium">
+                        {item.label}
+                      </p>
+                    </div>
+                  );
+                })}
+              </div>
+            </motion.div>
+          ) : (
+            <motion.div
+              key={activeTab}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="flex flex-col md:flex-row gap-10 md:gap-16 items-center"
+            >
+              {/* Image */}
+              <div className="w-full md:w-1/2 overflow-hidden rounded-3xl shadow-xl border border-zinc-100 shrink-0 relative aspect-[4/3]">
+                <Image
+                  src={active.image!}
+                  alt={active.title}
+                  fill
+                  unoptimized
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              </div>
+
+              {/* Text */}
+              <div className="w-full md:w-1/2 flex flex-col justify-center">
+                <span className="text-xs font-mono text-(--copper) mb-2 uppercase tracking-[0.2em]">
+                  {active.index} {"//"} Sync Retreat
+                </span>
+                <h3 className="text-2xl md:text-3xl font-serif font-bold text-zinc-900 mb-4">
+                  {active.title}
+                </h3>
+                <p className="text-zinc-600 font-sans text-sm md:text-base leading-relaxed">
+                  {active.description}
+                </p>
+              </div>
+            </motion.div>
+          )}
         </AnimatePresence>
       </div>
     </section>
   );
 }
+

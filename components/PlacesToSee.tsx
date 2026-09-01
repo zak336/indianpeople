@@ -2,7 +2,6 @@
 import { motion } from "framer-motion";
 import { MapPin, ArrowRight } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 
 const destinations = [
   {
@@ -22,7 +21,7 @@ const destinations = [
     statusColor: "bg-emerald-100 text-emerald-800 border-emerald-200",
     image: "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?q=80&w=1470&auto=format&fit=crop",
     region: "Kerala",
-    href: "/checkout",
+    href: "#scheduler",
     highlight: true,
   },
   {
@@ -115,12 +114,12 @@ export default function PlacesToSee() {
                 </p>
 
                 {dest.href && (
-                  <Link
+                  <a
                     href={dest.href}
                     className="mt-5 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-white bg-(--copper) px-4 py-2.5 rounded-full hover:bg-(--copper-dark) transition-colors"
                   >
                     Book Varkala <ArrowRight size={13} />
-                  </Link>
+                  </a>
                 )}
               </div>
             </motion.div>

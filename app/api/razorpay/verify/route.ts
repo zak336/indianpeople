@@ -143,7 +143,7 @@ export async function POST(req: NextRequest) {
         phone: bookingDetails.phone,
         plan: bookingDetails.plan,
         retreat_date: bookingDetails.retreatDate,
-        upgrade_room: bookingDetails.upgradeRoom,
+        addons: bookingDetails.addons,
         amount_paid: payment.amount, // Use verified amount from Razorpay
         razorpay_order_id,
         razorpay_payment_id,

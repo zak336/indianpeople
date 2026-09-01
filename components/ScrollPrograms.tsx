@@ -23,7 +23,7 @@ const plans = [
       "GST included in quoted price",
     ],
     cta: "Book Now",
-    href: "/checkout",
+    href: "#scheduler",
     highlight: false,
     badge: null,
   },
@@ -45,7 +45,7 @@ const plans = [
       "On-ground host & welcome kit",
     ],
     cta: "Book Now — Most Popular",
-    href: "/checkout",
+    href: "#scheduler",
     highlight: true,
     badge: "Most Popular",
   },
@@ -140,12 +140,12 @@ export default function Programs() {
               From solo travellers to enterprise teams — every plan includes a curated stay, co-working infrastructure, and the Sync Retreat experience.
             </p>
           </div>
-          <Link
-            href="/checkout"
+          <a
+            href="#scheduler"
             className="shrink-0 self-start md:self-end inline-flex items-center gap-3 px-7 py-3.5 rounded-full bg-(--copper) text-white font-sans font-bold uppercase tracking-wide text-sm hover:bg-(--copper-dark) transition-colors shadow-lg"
           >
             Reserve a Spot <ChevronRight size={16} />
-          </Link>
+          </a>
         </div>
 
         {/* Main plans: 2-col top row */}
@@ -261,6 +261,19 @@ function PlanCard({ plan, compact = false }: { plan: typeof plans[0]; compact?: 
           >
             <Mail size={15} />
             {plan.cta}
+          </a>
+        ) : plan.href.startsWith("#") ? (
+          <a
+            href={plan.href}
+            style={isHighlighted ? { background: "var(--copper)" } : {}}
+            className={`w-full py-3.5 rounded-full flex items-center justify-center gap-2 font-bold uppercase tracking-wide text-sm transition-all duration-300 ${
+              isHighlighted
+                ? "text-white shadow-lg shadow-(--copper)/30 hover:shadow-(--copper)/50 hover:bg-(--copper-dark)"
+                : "bg-zinc-900 text-white hover:bg-zinc-700"
+            }`}
+          >
+            {plan.cta}
+            <ChevronRight size={15} />
           </a>
         ) : (
           <Link

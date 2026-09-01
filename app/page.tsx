@@ -8,7 +8,6 @@ import FloatingNav from "@/components/FloatingNav";
 import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
 import PlacesToSee from "@/components/PlacesToSee";
-import Coliving from "@/components/Coliving";
 import Scheduler from "@/components/Scheduler";
 import BookingCard from "@/components/BookingCard";
 import FounderCredibility from "@/components/FounderCredibility";
@@ -158,13 +157,12 @@ export default function Home() {
       <main>
         <Hero />
         <About />
-        <Coliving />
         <PlacesToSee />
         
         <FounderCredibility />
-        <BookingCard />
         <Programs />
         <Scheduler />
+        <BookingCard />
 
         {/* High Impact Quote Section */}
         <section className="bg-(--basalt) text-white py-24 px-6 md:px-12 lg:px-24 text-center relative overflow-hidden">
