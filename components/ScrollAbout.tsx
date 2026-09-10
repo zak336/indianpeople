@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { Bed, Laptop, Utensils, Wifi, LucideIcon } from "lucide-react";
+import { BadgeCheck, Bed, BriefcaseBusiness, Gauge, LucideIcon, MapPinned, Utensils } from "lucide-react";
 
 interface Feature {
   tabLabel: string;
@@ -19,36 +19,37 @@ const features: Feature[] = [
     tabLabel: "The Problem",
     title: "Your best work doesn't happen in the noise.",
     description:
-      "Between Slack pings, city commutes, and a life that never turns off — India's remote workers, freelancers, and founders are burning out. You don't need a vacation. You need dedicated time in a new environment where the only variable left is your output.",
+      "Between Slack pings, city commutes, and a life that never turns off, remote professionals need dedicated time in a new environment with predictable work infrastructure.",
     image:
       "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1470&auto=format&fit=crop",
     index: "01",
   },
   {
     tabLabel: "The Spaces",
-    title: "Premium Co-Living & Co-Working Spaces",
+    title: "A place you can actually work from.",
     description:
-      "Curated properties at India's most scenic locations — coastal villas in Varkala, mountain chalets in Manali, heritage havelis in Jaipur. Each with private ensuite rooms, ergonomic workstations, and fast, redundant internet.",
+      "The October retreat is based in Varkala, Kerala. The exact property, room category, workspace photos, measured internet speed, and airport route are shared with guests before the deposit is paid.",
     index: "02",
     images: [
       {
-        src: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=1480&auto=format&fit=crop",
-        alt: "Sync Retreat scenic property exterior"
+        src: "/houseboat.jpg",
+        alt: "Kerala reference image for the Varkala retreat"
       },
       {
-        src: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1469&auto=format&fit=crop",
-        alt: "Sync Retreat co-working workspace setup"
+        src: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?q=80&w=1470&auto=format&fit=crop",
+        alt: "Varkala beach and laterite cliffs on the Kerala coast"
       },
       {
-        src: "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1470&auto=format&fit=crop",
-        alt: "Sync Retreat private ensuite accommodation"
+        src: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=1470&auto=format&fit=crop",
+        alt: "Bright remote-work desk and collaborative workspace"
       }
     ],
     amenities: [
-      { label: "Private Ensuite Room", icon: Bed },
-      { label: "Ergonomic Workspace", icon: Laptop },
-      { label: "All Meals Included", icon: Utensils },
-      { label: "High-Speed Internet", icon: Wifi },
+      { label: "Varkala, Kerala · bookable retreat location", icon: MapPinned },
+      { label: "Dedicated ergonomic workspace", icon: BriefcaseBusiness },
+      { label: "Primary + backup internet · speed test shared before payment", icon: Gauge },
+      { label: "Confirmed room and workspace photos shared before payment", icon: BadgeCheck },
+      { label: "Breakfast + lunch daily", icon: Utensils },
     ]
   },
   {
@@ -72,7 +73,7 @@ const features: Feature[] = [
 ];
 
 export default function About() {
-  const [activeTab, setActiveTab] = useState(0);
+  const [activeTab, setActiveTab] = useState(1);
   const active = features[activeTab];
 
   return (
@@ -117,11 +118,15 @@ export default function About() {
         </div>
 
         {/* Audience segments pills */}
-        <div className="flex flex-wrap gap-2 mb-10">
-          {["Freelancers & Agency Owners", "Creative Professionals", "Remote Tech Workers", "Burned-out Employees", "Early-stage Founders", "Corporate Teams"].map((seg) => (
-            <span key={seg} className="px-4 py-1.5 rounded-full bg-stone-100 border border-stone-200 text-xs font-mono text-zinc-600 uppercase tracking-wider">
-              {seg}
-            </span>
+        <div className="grid gap-4 mb-6 md:grid-cols-2">
+          {[
+            ["Individual workation", "Remote professionals, freelancers, agency owners, founders, and creators who can work away from home."],
+            ["Team offsite", "Remote-first startups, agencies, and distributed teams of 5–50 people."],
+          ].map(([title, description]) => (
+            <div key={title} className="border border-stone-200 bg-stone-50 px-5 py-3">
+              <p className="font-serif text-lg font-bold text-zinc-900">{title}</p>
+              <p className="mt-1 text-sm leading-relaxed text-zinc-600">{description}</p>
+            </div>
           ))}
         </div>
 

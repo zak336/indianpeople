@@ -9,6 +9,7 @@ import {
 } from "framer-motion";
 import { useRef, useState } from "react";
 import Link from "next/link";
+import { PRICING } from "@/lib/pricing";
 
 interface Item {
   title: string;
@@ -54,8 +55,8 @@ export default function ExpeditionReceipt() {
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
     let total = 0;
-    if (latest >= 0.37) total += 20000; // Accommodation
-    if (latest >= 0.47) total += 20000; // Co-working
+    if (latest >= 0.37) total += 25000; // Accommodation
+    if (latest >= 0.47) total += 10000; // Co-working
     if (latest >= 0.57) total += 20000; // Meals & Ops
     if (latest >= 0.67) total += 19999; // Internet & Transfers
     setPrice(total);
@@ -72,8 +73,7 @@ export default function ExpeditionReceipt() {
             THE VALUE
           </h2>
           <p className="mt-2 text-xs uppercase tracking-[0.2em] text-stone-500 max-w-md mx-auto">
-            ₹79,999 for 14 days = ₹5,714/day. Less than rent + food + WeWork in
-            any Indian metro.
+            ₹74,999 for 14 days. Transparent pricing for a private room, desk, meals, transport, and experiences.
           </p>
         </div>
 
@@ -81,7 +81,7 @@ export default function ExpeditionReceipt() {
         <ReceiptRow
           title="Accommodation"
           value="Private Ensuite Room"
-          subtitle="14 nights at a scenic property."
+          subtitle="13 nights at a confirmed Varkala property."
           progress={scrollYProgress}
           start={0.25}
         />
@@ -93,9 +93,9 @@ export default function ExpeditionReceipt() {
           start={0.35}
         />
         <ReceiptRow
-          title="All Meals & Operations"
-          value="All Inclusive"
-          subtitle="Breakfast, lunch & dinner — zero friction."
+          title="Meals & Operations"
+          value="Breakfast + lunch daily"
+          subtitle="Plus two excursion lunches."
           progress={scrollYProgress}
           start={0.45}
         />
@@ -122,7 +122,7 @@ export default function ExpeditionReceipt() {
                 <span className="text-emerald-600">✓</span> Private ensuite room
               </li>
               <li className="flex items-center gap-1.5">
-                <span className="text-emerald-600">✓</span> All daily meals
+                <span className="text-emerald-600">✓</span> Breakfast + lunch daily
               </li>
               <li className="flex items-center gap-1.5">
                 <span className="text-emerald-600">✓</span> Ergonomic co-working
@@ -212,10 +212,10 @@ export default function ExpeditionReceipt() {
                   Total Output
                 </td>
                 <td className="py-2 px-3 font-bold text-zinc-900">
-                  ₹45,000+ & Burnout
+                  ₹45,000+ before retreat experiences
                 </td>
                 <td className="py-2 px-3 text-right font-bold text-(--copper)">
-                  ₹79,999 & Max Output
+                  ₹74,999 total
                 </td>
               </tr>
             </tbody>
@@ -233,7 +233,7 @@ export default function ExpeditionReceipt() {
           <div className="mt-4 flex items-center justify-between">
             <div>
               <h3 className="text-4xl font-bold text-stone-900 font-serif">
-                ₹{price > 0 ? price.toLocaleString("en-IN") : "79,999"}
+                ₹{price > 0 ? price.toLocaleString("en-IN") : PRICING.plan14Day.price.toLocaleString("en-IN")}
               </h3>
               <p className="text-xs text-zinc-400 font-mono mt-1">
                 Total · per person
@@ -246,7 +246,7 @@ export default function ExpeditionReceipt() {
             </Link>
           </div>
           <p className="text-[10px] text-zinc-500 uppercase tracking-widest text-center mt-6">
-            Fully refundable up to 30 days before retreat start.
+            Deposit refundable until September 19, 2026.
           </p>
         </motion.div>
       </motion.div>

@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
 import { ChevronRight, MapPin } from "lucide-react";
-import { BsWhatsapp } from "react-icons/bs";
 
 export default function Hero() {
   const ref = useRef(null);
@@ -38,6 +37,26 @@ export default function Hero() {
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(201,124,46,0.15),transparent_60%)] pointer-events-none" />
         </div>
 
+        <Link
+          href="#home"
+          aria-label="Sync Retreat home"
+          className="absolute left-5 top-5 z-20 flex items-center gap-3.5 rounded-full border border-white/20 bg-black/20 px-4 py-2.5 text-white backdrop-blur-md transition hover:border-(--copper-light)/70 hover:bg-black/35 md:left-8 md:top-7"
+        >
+          <span className="relative h-13 w-13 overflow-hidden rounded-full border border-white/40 bg-white/90 shadow-lg md:h-14 md:w-14">
+            <Image
+              src="/Logo.jpeg"
+              alt="Sync Retreat logo"
+              fill
+              priority
+              className="object-contain p-1"
+            />
+          </span>
+          <span className="pr-1 text-left">
+            <span className="block font-serif text-lg leading-none tracking-tight md:text-xl">Sync Retreat</span>
+            <span className="mt-1 block font-mono text-[10px] uppercase tracking-[0.2em] text-white/70">India</span>
+          </span>
+        </Link>
+
         <motion.div
           className="absolute inset-0 flex items-center justify-center"
           style={{ opacity, y }}
@@ -53,7 +72,7 @@ export default function Hero() {
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
               <MapPin size={12} className="text-(--copper-light)" />
               <span className="text-xs font-mono tracking-[0.3em] text-white/90 uppercase">
-                Next Retreat: Varkala, Kerala — Oct 19
+                Next Retreat: Varkala, Kerala · Oct to Feb
               </span>
             </motion.div>
 
@@ -72,11 +91,7 @@ export default function Hero() {
               transition={{ delay: 0.4, type: "spring", stiffness: 100 }}
               className="text-4xl md:text-[5rem] leading-none font-serif font-medium tracking-tight drop-shadow-[0_10px_10px_rgba(0,0,0,0.8)]"
             >
-              Work Remotely.
-              <br />
-              <span className="italic text-(--copper-light)">
-                Explore India.
-              </span>
+              A 14-Day Workation in Varkala for Remote Professionals
             </motion.h1>
 
             <motion.p
@@ -85,9 +100,7 @@ export default function Hero() {
               transition={{ delay: 0.5 }}
               className="text-base md:text-lg font-sans font-medium tracking-wide max-w-2xl mx-auto drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)] text-zinc-100 mt-2"
             >
-              A 14-day curated workation combining enterprise-grade
-              infrastructure with coastal living. Zero operational friction.
-              Maximum output.
+              A structured coastal retreat with a private room, dedicated desk, reliable connectivity, meals, community, and weekend experiences.
             </motion.p>
 
             <motion.div
@@ -101,17 +114,16 @@ export default function Hero() {
                 style={{ background: "var(--copper)" }}
                 className="px-8 py-4 rounded-full flex items-center gap-3 text-white font-sans font-bold uppercase tracking-wide cursor-pointer shadow-xl shadow-(--copper)/30 hover:shadow-(--copper)/50 hover:scale-105 transition-all duration-300"
               >
-                <span>Reserve a Spot — ₹29,999 Deposit</span>
+                <span>Check Dates &amp; Reserve</span>
                 <ChevronRight size={20} />
               </Link>
               <a
-                href="https://chat.whatsapp.com/K8OntEo4WTkAfX2iGA9Io9"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-8 py-4 rounded-full flex items-center gap-3 text-white font-sans font-semibold border border-white/30 hover:border-[#25D366]/50 hover:bg-[#25D366]/10 uppercase tracking-wide transition-all duration-300 backdrop-blur-sm"
+                href="#pricing"
+                className="px-8 py-4 rounded-full flex items-center gap-3 text-white font-sans font-semibold border border-white/30 hover:border-white/60 hover:bg-white/10 uppercase tracking-wide transition-all duration-300 backdrop-blur-sm"
               >
-                <BsWhatsapp size={18} className="text-[#25D366]" />
-                <span>Join our Community</span>
+                <span>See What&apos;s Included</span>
               </a>
             </motion.div>
 
@@ -121,8 +133,17 @@ export default function Hero() {
               transition={{ delay: 0.85 }}
               className="text-[10px] font-mono uppercase tracking-wider text-zinc-300"
             >
-              Fully refundable up to 30 days before retreat start.
+              Deposit refundable until September 19, 2026.
             </motion.p>
+
+            <a
+              href="https://chat.whatsapp.com/K8OntEo4WTkAfX2iGA9Io9"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center rounded-full border border-(--copper-light)/70 bg-(--copper)/20 px-5 py-2.5 text-xs font-bold uppercase tracking-[0.15em] text-white shadow-lg shadow-black/10 transition hover:bg-(--copper)/40 hover:text-white"
+            >
+              Join our Community
+            </a>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}

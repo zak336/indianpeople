@@ -64,7 +64,7 @@ export default function Coliving() {
           {[
             { label: "Private Ensuite Room", icon: "🛏" },
             { label: "Ergonomic Workspace", icon: "💻" },
-            { label: "All Meals Included", icon: "🍽" },
+            { label: "Breakfast + lunch daily", icon: "🍽" },
             { label: "High-Speed Internet", icon: "📡" },
           ].map((item, idx) => (
             <div key={idx} className="bg-white border border-stone-200 rounded-2xl p-5 text-center shadow-sm">

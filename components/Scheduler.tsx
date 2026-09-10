@@ -84,11 +84,10 @@ export default function Scheduler() {
             RETREAT SCHEDULE · 2026–27
           </span>
           <h2 className="text-3xl md:text-5xl font-serif font-medium tracking-tight">
-            Choose Your Date
+            Next retreat: Varkala, October 19–November 2, 2026
           </h2>
           <p className="mt-3 text-zinc-500 font-sans text-sm max-w-xl">
-            All retreats run across India&apos;s most scenic locations. Same
-            dates apply to both 7-day and 14-day plans.
+            Start with the next Varkala retreat. Choose another upcoming date only if October does not work for you.
           </p>
         </div>
 
@@ -117,7 +116,7 @@ export default function Scheduler() {
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
               <MapPin size={12} />
               <span className="text-[11px] font-mono uppercase tracking-wider font-bold">
-                Next Up: Varkala, Kerala
+                Next Up: Varkala, Kerala · Oct 19–Nov 2, 2026
               </span>
             </div>
 
@@ -186,7 +185,7 @@ export default function Scheduler() {
                 <span>Book This Date — {selectedPlan === "7day" ? PRICING.plan7Day.depositLabel : PRICING.plan14Day.depositLabel} Deposit</span>
               </Link>
               <p className="text-[10px] font-mono text-zinc-400 text-center mt-3 uppercase tracking-wider">
-                Fully refundable up to 30 days before retreat start
+                Deposit refundable until September 19, 2026
               </p>
             </div>
           </div>
@@ -218,26 +217,26 @@ export default function Scheduler() {
               ))}
             </div>
 
-            {/* Enterprise teaser */}
-            <div className="bg-(--basalt) text-white rounded-3xl p-8">
-              <span className="text-xs font-mono tracking-[0.3em] text-(--copper-light) uppercase block mb-3">
-                CORPORATE & TEAMS
+            <div className="rounded-3xl bg-(--basalt) p-8 text-white">
+              <span className="mb-3 block text-xs font-mono tracking-[0.3em] text-(--copper-light) uppercase">
+                CORPORATE &amp; TEAMS
               </span>
-              <h3 className="text-xl font-serif font-bold mb-2">
+              <h3 className="mb-2 text-xl font-serif font-bold">
                 Planning a Team Offsite?
               </h3>
-              <p className="text-zinc-400 text-sm leading-relaxed mb-6">
+              <p className="mb-6 text-sm leading-relaxed text-zinc-400">
                 Custom dates, dedicated spaces, and enterprise pricing for teams
-                of 5+. We handle everything.
+                of 5–50. We handle the program around your working hours.
               </p>
               <a
-                href="mailto:contact@syncretreat.com"
-                className="inline-flex items-center gap-2 bg-(--copper) text-white px-6 py-3 rounded-full font-bold text-sm uppercase tracking-wide hover:bg-(--copper-dark) transition-colors"
+                href="/checkout"
+                className="inline-flex items-center gap-2 rounded-full bg-(--copper) px-6 py-3 text-sm font-bold uppercase tracking-wide text-white transition-colors hover:bg-(--copper-dark)"
               >
                 Get Enterprise Quote
                 <ArrowRight size={16} />
               </a>
             </div>
+
           </div>
         </div>
       </div>

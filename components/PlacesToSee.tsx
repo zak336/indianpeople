@@ -2,17 +2,9 @@
 import { motion } from "framer-motion";
 import { MapPin, ArrowRight } from "lucide-react";
 import Image from "next/image";
+import { Fragment } from "react";
 
 const destinations = [
-  {
-    title: "Ladakh",
-    tagline: "High Altitude Escape",
-    description: "The original Sync Retreat location. Rugged landscapes, Buddhist monasteries, and crystal-clear mountain air at 3,524m.",
-    status: "Past Retreat",
-    statusColor: "bg-zinc-100 text-zinc-600 border-zinc-200",
-    image: "https://images.unsplash.com/photo-1600242466690-c1c04f081762?q=80&w=1470&auto=format&fit=crop",
-    region: "Jammu & Kashmir",
-  },
   {
     title: "Varkala, Kerala",
     tagline: "Clifftop Coastal Retreat",
@@ -23,6 +15,15 @@ const destinations = [
     region: "Kerala",
     href: "#scheduler",
     highlight: true,
+  },
+  {
+    title: "Ladakh",
+    tagline: "High Altitude Escape",
+    description: "The original Sync Retreat location. Rugged landscapes, Buddhist monasteries, and crystal-clear mountain air at 3,524m.",
+    status: "Past Retreat",
+    statusColor: "bg-zinc-100 text-zinc-600 border-zinc-200",
+    image: "https://images.unsplash.com/photo-1600242466690-c1c04f081762?q=80&w=1470&auto=format&fit=crop",
+    region: "Jammu & Kashmir",
   },
   {
     title: "Manali, Himachal",
@@ -46,39 +47,41 @@ const destinations = [
 
 export default function PlacesToSee() {
   return (
-    <section id="destinations" className="bg-white text-zinc-900 py-24 px-6 md:px-12 lg:px-24 border-t border-stone-200">
+    <section id="destinations" className="bg-white text-zinc-900 py-12 md:py-14 px-6 md:px-12 lg:px-24 border-t border-stone-200">
       <div className="max-w-7xl mx-auto">
 
         {/* Header */}
-        <div className="max-w-3xl mb-16">
+        <div className="max-w-3xl mb-7">
           <span className="text-xs font-mono tracking-[0.4em] text-(--copper) uppercase mb-2 block">
             DESTINATIONS
           </span>
-          <h2 className="text-3xl md:text-5xl font-serif font-medium tracking-tight">
-            India&apos;s Most Scenic Locations
+          <h2 className="text-3xl md:text-4xl font-serif font-medium tracking-tight">
+            Varkala now. More locations later.
           </h2>
-          <p className="text-zinc-500 font-sans text-sm md:text-base leading-relaxed mt-4">
-            We curate retreats at handpicked locations across India — each chosen for natural beauty, connectivity, and the unique experience it offers.
+          <p className="text-zinc-500 font-sans text-sm md:text-base leading-relaxed mt-2">
+            Varkala is the currently bookable retreat. Manali and Jaipur are future locations, not alternative dates for this booking.
           </p>
         </div>
 
         {/* Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <p className="mb-3 font-mono text-xs font-bold uppercase tracking-[0.3em] text-(--copper)">CURRENTLY BOOKABLE</p>
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
           {destinations.map((dest, idx) => (
+            <Fragment key={dest.title}>
+            {idx === 1 && <p className="col-span-full mb-0 mt-3 font-mono text-xs font-bold uppercase tracking-[0.3em] text-zinc-400">FUTURE LOCATIONS &amp; PAST RETREATS</p>}
             <motion.div
-              key={idx}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1, duration: 0.5 }}
               className={`group flex flex-col rounded-3xl overflow-hidden border transition-all duration-300 ${
                 dest.highlight
-                  ? "bg-(--basalt) border-(--copper)/30 shadow-xl shadow-(--copper)/10"
+                  ? "bg-(--basalt) border-(--copper)/30 shadow-xl shadow-(--copper)/10 lg:col-span-2"
                   : "bg-stone-50 border-stone-200 hover:shadow-lg hover:border-stone-300"
               }`}
             >
               {/* Image Frame */}
-              <div className="overflow-hidden aspect-video relative">
+              <div className={`overflow-hidden relative ${dest.highlight ? "h-44 md:h-48" : "h-24 md:h-28"}`}>
                 <Image
                   src={dest.image}
                   alt={dest.title}
@@ -96,7 +99,7 @@ export default function PlacesToSee() {
               </div>
 
               {/* Content */}
-              <div className="p-6 grow flex flex-col">
+              <div className={`${dest.highlight ? "p-4 md:p-5" : "p-4"} grow flex flex-col`}>
                 <div className="flex items-center gap-1.5 mb-2">
                   <MapPin size={11} className={dest.highlight ? "text-(--copper-light)" : "text-(--copper)"} />
                   <span className={`text-[10px] font-mono uppercase tracking-wider ${dest.highlight ? "text-zinc-400" : "text-zinc-400"}`}>
@@ -109,20 +112,21 @@ export default function PlacesToSee() {
                 <p className={`text-xs font-mono uppercase tracking-wider mb-3 ${dest.highlight ? "text-(--copper-light)" : "text-(--copper)"}`}>
                   {dest.tagline}
                 </p>
-                <p className={`text-sm leading-relaxed grow ${dest.highlight ? "text-zinc-400" : "text-zinc-500"}`}>
+                <p className={`text-xs leading-relaxed grow ${dest.highlight ? "text-zinc-400" : "text-zinc-500 line-clamp-2"}`}>
                   {dest.description}
                 </p>
 
                 {dest.href && (
                   <a
                     href={dest.href}
-                    className="mt-5 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-white bg-(--copper) px-4 py-2.5 rounded-full hover:bg-(--copper-dark) transition-colors"
+                    className="mt-3 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-white bg-(--copper) px-4 py-2.5 rounded-full hover:bg-(--copper-dark) transition-colors"
                   >
                     Book Varkala <ArrowRight size={13} />
                   </a>
                 )}
               </div>
             </motion.div>
+            </Fragment>
           ))}
         </div>
       </div>

@@ -7,19 +7,31 @@ export default function FAQ() {
   const faqs = [
     {
       question: "Who is Sync Retreat for?",
-      answer: "Sync Retreat is for anyone who works remotely and wants to combine productive deep-work with experiencing India's most scenic locations. This includes freelancers, agency owners, remote tech professionals, creative workers (writers, designers, filmmakers), burned-out employees considering a leap, and early-stage founders. We also offer custom programs for corporate teams and small startup offsite groups."
+      answer: "The individual workation is for remote professionals, freelancers, agency owners, founders, and creators who can work away from home. Team offsites are for remote-first startups, agencies, and distributed teams of 5–50 people."
     },
     {
       question: "What's included in the 7-day and 14-day plans?",
-      answer: "Both plans include: private ensuite room accommodation, ergonomic co-working workspace, all meals (breakfast, lunch, and dinner), high-speed redundant internet, airport/station transfers, and access to the Sync Retreat community. The 14-day plan additionally includes two curated weekend exploration outings to local scenic spots."
+      answer: "Both plans include a private ensuite room, dedicated workspace, primary and backup internet, airport/station transfers, and community access. The 7-day plan includes breakfast and lunch daily plus two excursion lunches and one signature experience. The 14-day plan includes those meals plus two weekend trips and community sessions."
     },
     {
       question: "Can I work on client projects during the retreat?",
-      answer: "Yes. Our spaces operate on a 'Work-First' protocol. Core work hours (9 AM – 6 PM) are strictly silent deep-work periods with dual-redundant high-speed Wi-Fi and power backups. Community excursions and group dinners happen strictly outside working hours."
+      answer: "Yes. The sample schedule protects focused work from 9 AM–1 PM and 2–5 PM. Calls and meetings are welcome; the confirmed property and workspace details, including internet test results, are shared before payment."
     },
     {
       question: "What is the Yearly Pass?",
-      answer: "The Yearly Pass (₹1,49,999) gives you 2 retreat trips to any Sync Retreat location across India, at any time during the year. You get priority date selection before spots open to the public. Each trip can be used as a 7-day or 14-day plan. Trips can be rolled over to the following year if unused."
+      answer: "The Yearly Pass is a separate product for two India retreats. It is shown below the main 7-day and 14-day booking path so you can choose the Varkala retreat without comparing unrelated products."
+    },
+    {
+      question: "What is the exact property?",
+      answer: "The confirmed Varkala property name, room photos, workspace photos, and location are shared with each guest before the deposit is paid. The current public page uses a Kerala reference image rather than presenting stock imagery as the booked property."
+    },
+    {
+      question: "What is the internet speed and backup arrangement?",
+      answer: "The stay includes a primary connection plus backup internet or hotspot access. The measured speed test and backup arrangement for the confirmed property are shared before payment."
+    },
+    {
+      question: "What meals are included?",
+      answer: "The 14-day plan includes breakfast and lunch daily, plus two excursion lunches. The 7-day plan follows the same daily meal pattern with two excursion lunches. Flights and personal expenses are not included."
     },
     {
       question: "Do you handle corporate offsites and team bookings?",
@@ -27,11 +39,19 @@ export default function FAQ() {
     },
     {
       question: "What is the refund and cancellation policy?",
-      answer: "100% refundable deposit up to 30 days before start date. If cancelled within 30 days, your deposit converts into a lifetime credit valid across any future SyncRetreat."
+      answer: "For the October 19, 2026 retreat, the ₹29,999 deposit is 100% refundable until September 19, 2026. After that deadline, the deposit converts into a lifetime credit valid across future Sync Retreat dates."
+    },
+    {
+      question: "What happens if the retreat is postponed?",
+      answer: "You can move your booking to the replacement date or request a full refund of amounts paid. We will contact every booked guest directly if a date changes."
+    },
+    {
+      question: "How do I reach the property from the airport?",
+      answer: "Round-trip airport or station pickup and drop are included. The Varkala arrival route and pickup instructions are included in the pre-arrival guide sent after booking."
     },
     {
       question: "Which locations are currently available?",
-      answer: "Our next retreat is in Varkala, Kerala starting October 19, 2026. Ladakh was our inaugural location. Manali and Jaipur are coming soon. We run 9 retreat windows per season — the same start dates apply to both 7-day and 14-day plans."
+      answer: "The currently bookable retreat is Varkala, Kerala, October 19–November 2, 2026. Ladakh is a past retreat; Manali and Jaipur are future locations."
     },
     {
       question: "What is the Room Upgrade?",

@@ -5,12 +5,12 @@ import ScrollGallery from "@/components/ScrollGallery";
 import Programs from "@/components/ScrollPrograms";
 import Hero from "@/components/ScrollZoomHero";
 import FloatingNav from "@/components/FloatingNav";
+import FloatingAbout from "@/components/FloatingAbout";
 import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
 import PlacesToSee from "@/components/PlacesToSee";
 import Scheduler from "@/components/Scheduler";
 import BookingCard from "@/components/BookingCard";
-import FounderCredibility from "@/components/FounderCredibility";
 import { useEffect } from "react";
 import { PRICING } from "@/lib/pricing";
 
@@ -54,7 +54,7 @@ export default function Home() {
     "@context": "https://schema.org",
     "@type": "Product",
     name: "Sync Retreat — 7-Day Tourist Workation Plan",
-    description: "7-day workation retreat across India's most scenic locations. Private ensuite room, co-working workspace, all meals, and weekend explorations included.",
+    description: "7-day Varkala workation with a private ensuite room, dedicated desk, reliable connectivity, breakfast and lunch daily, and weekend experiences.",
     image: "https://india.syncretreat.com/assets/hero.jpeg",
     brand: { "@type": "Brand", name: "Sync Retreat" },
     offers: {
@@ -71,7 +71,7 @@ export default function Home() {
     "@context": "https://schema.org",
     "@type": "Product",
     name: "Sync Retreat — 14-Day Deep Work Workation Plan",
-    description: "14-day structured workation for remote workers, freelancers, and founders. Scenic India locations, co-working infrastructure, all meals, and peer community.",
+    description: "14-day Varkala workation with a private ensuite room, dedicated desk, reliable connectivity, breakfast and lunch daily, two weekend trips, and peer community.",
     image: "https://india.syncretreat.com/assets/hero.jpeg",
     brand: { "@type": "Brand", name: "Sync Retreat" },
     offers: {
@@ -93,7 +93,7 @@ export default function Home() {
     "@context": "https://schema.org",
     "@type": "Event",
     name: "Sync Retreat — Varkala, Kerala Workation",
-    description: "A curated 7-day and 14-day workation at the clifftop coastal town of Varkala, Kerala. High-speed internet, private rooms, co-working workspace, all meals, and weekend coastal explorations.",
+    description: "A curated 7-day and 14-day workation at the clifftop coastal town of Varkala, Kerala. Private rooms, dedicated desks, primary and backup internet, meals, and weekend coastal explorations.",
     image: "https://india.syncretreat.com/assets/hero.jpeg",
     startDate: "2026-10-19",
     endDate: "2026-11-02",
@@ -154,34 +154,14 @@ export default function Home() {
       />
 
       <FloatingNav />
+      <FloatingAbout />
       <main>
         <Hero />
         <About />
         <PlacesToSee />
-        
-        <FounderCredibility />
         <Programs />
         <Scheduler />
         <BookingCard />
-
-        {/* High Impact Quote Section */}
-        <section className="bg-(--basalt) text-white py-24 px-6 md:px-12 lg:px-24 text-center relative overflow-hidden">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(201,124,46,0.12),transparent_65%)] pointer-events-none" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(74,124,89,0.08),transparent_55%)] pointer-events-none" />
-          <div className="max-w-4xl mx-auto relative z-10">
-            <span className="text-xs font-mono tracking-[0.4em] text-(--copper-light) uppercase mb-6 block">
-              THE VISION
-            </span>
-            <blockquote className="text-3xl md:text-5xl font-serif italic font-medium leading-tight text-stone-100 tracking-tight">
-              &ldquo;India has always been a land of seekers. We built a place for those who seek both great work and great experiences.&rdquo;
-            </blockquote>
-            <div className="w-12 h-px bg-(--copper) mx-auto mt-10 rounded-full" />
-            <p className="mt-4 text-xs font-mono uppercase tracking-widest text-zinc-500">
-              — Sync Retreat, India
-            </p>
-          </div>
-        </section>
-
         <ScrollGallery />
         <FAQ />
         <Footer />
