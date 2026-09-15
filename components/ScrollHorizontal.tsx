@@ -31,7 +31,7 @@ export default function HorizontalGallery() {
           className="flex gap-8 px-20"
         >
           {images.map((src) => (
-            <div key={src} className="relative h-[80vh] w-[60vw] flex-shrink-0">
+            <div key={src} className="relative h-[80vh] w-[60vw] shrink-0">
               <Image
                 src={src}
                 alt="Gallery image"
