@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import Image from "next/image";
 
 const images = [
   "https://picsum.photos/id/1018/800/1000",
@@ -30,11 +31,14 @@ export default function HorizontalGallery() {
           className="flex gap-8 px-20"
         >
           {images.map((src) => (
-            <img
-              key={src}
-              src={src}
-              className="h-[80vh] w-[60vw] rounded-3xl object-cover flex-shrink-0"
-            />
+            <div key={src} className="relative h-[80vh] w-[60vw] flex-shrink-0">
+              <Image
+                src={src}
+                alt="Gallery image"
+                fill
+                className="rounded-3xl object-cover"
+              />
+            </div>
           ))}
         </motion.div>
       </div>

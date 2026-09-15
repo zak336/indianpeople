@@ -49,7 +49,7 @@ export default function Community() {
               transition={{ delay: idx * 0.15, duration: 0.6 }}
               className="group"
             >
-              <div className="overflow-hidden rounded-3xl shadow-xl border border-zinc-800 mb-8 aspect-[4/3] relative">
+              <div className="overflow-hidden rounded-3xl shadow-xl border border-zinc-800 mb-8 aspect-4/3 relative">
                 <Image 
                   alt={card.title} 
                   fill

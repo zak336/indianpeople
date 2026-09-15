@@ -45,7 +45,6 @@ const features: Feature[] = [
       }
     ],
     amenities: [
-      { label: "Varkala, Kerala · bookable retreat location", icon: MapPinned },
       { label: "Dedicated ergonomic workspace", icon: BriefcaseBusiness },
       { label: "Primary + backup internet · speed test shared before payment", icon: Gauge },
       { label: "Confirmed room and workspace photos shared before payment", icon: BadgeCheck },
@@ -210,7 +209,7 @@ export default function About() {
               className="flex flex-col md:flex-row gap-10 md:gap-16 items-center"
             >
               {/* Image */}
-              <div className="w-full md:w-1/2 overflow-hidden rounded-3xl shadow-xl border border-zinc-100 shrink-0 relative aspect-[4/3]">
+              <div className="w-full md:w-1/2 overflow-hidden rounded-3xl shadow-xl border border-zinc-100 shrink-0 relative aspect-4/3">
                 <Image
                   src={active.image!}
                   alt={active.title}

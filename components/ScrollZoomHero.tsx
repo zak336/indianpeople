@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
 import { ChevronRight, MapPin } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 
 export default function Hero() {
   const ref = useRef(null);
@@ -47,6 +48,7 @@ export default function Hero() {
               src="/Logo.jpeg"
               alt="Sync Retreat logo"
               fill
+              sizes="56px"
               priority
               className="object-contain p-1"
             />
@@ -140,8 +142,9 @@ export default function Hero() {
               href="https://chat.whatsapp.com/K8OntEo4WTkAfX2iGA9Io9"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center rounded-full border border-(--copper-light)/70 bg-(--copper)/20 px-5 py-2.5 text-xs font-bold uppercase tracking-[0.15em] text-white shadow-lg shadow-black/10 transition hover:bg-(--copper)/40 hover:text-white"
+              className="inline-flex items-center gap-2 rounded-full border border-green-500/70 bg-green-500/20 px-5 py-2.5 text-xs font-bold uppercase tracking-[0.15em] text-white shadow-lg shadow-black/10 transition hover:bg-green-500/40 hover:text-white"
             >
+              <FaWhatsapp size={16} className="text-green-400" />
               Join our Community
             </a>
 

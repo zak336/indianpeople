@@ -4,7 +4,7 @@ import { motion, useScroll, useTransform, useSpring, type MotionValue } from "fr
 import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 
-const MotionImage = motion(Image);
+const MotionImage = motion.create(Image);
 
 interface GalleryItem {
   src: string;
@@ -97,7 +97,7 @@ function MobileGallery() {
               key={idx}
               className="bg-white border border-stone-200 p-4 rounded-3xl shadow-sm hover:shadow-md transition-shadow duration-300"
             >
-              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-4 bg-stone-100">
+              <div className="relative aspect-4/3 rounded-2xl overflow-hidden mb-4 bg-stone-100">
                 <Image
                   src={item.src}
                   alt={item.title}

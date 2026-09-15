@@ -22,7 +22,7 @@ export default function FloatingAbout() {
             animate={{ opacity: 1, x: 0, scale: 1 }}
             exit={{ opacity: 0, x: "110%", scale: 0.98 }}
             transition={{ type: "spring", stiffness: 280, damping: 28, mass: 0.8 }}
-            className="max-h-[calc(100vh-2rem)] w-[min(52rem,calc(100vw-2rem))] overflow-y-auto rounded-3xl border border-white/15 bg-(--basalt) text-white shadow-2xl shadow-black/20"
+            className="max-h-[calc(100vh-2rem)] w-[min(52rem,calc(100vw-2rem))] overflow-y-auto overflow-x-hidden rounded-3xl border border-white/15 bg-(--basalt) text-white shadow-2xl shadow-black/20"
             aria-label="About Sync Retreat"
           >
             <div className="relative grid gap-7 p-5 md:grid-cols-[1.05fr_0.95fr] md:gap-8 md:p-8">
@@ -64,11 +64,14 @@ export default function FloatingAbout() {
                 </div>
                 <div className="mt-6 flex items-center gap-3 border-t border-white/10 pt-5">
                   <div className="relative h-12 w-12 overflow-hidden rounded-full border-2 border-(--copper)/60">
-                    <Image src={founderThumbnailUrl} alt="Zakee and Manotosh from the founder video thumbnail" fill unoptimized className="object-cover" />
+                    <Image src={founderThumbnailUrl} alt="Zakee Ahmed & Manotosh Kumar Phade from the founder video thumbnail" fill unoptimized className="object-cover" />
                   </div>
                   <div>
                     <p className="text-xs uppercase tracking-[0.2em] text-(--copper-light)">Built by</p>
-                    <p className="mt-1 text-base font-bold text-zinc-100">Zakee and Manotosh</p>
+                    <p className="mt-1 text-base font-bold text-zinc-100">
+                      Zakee Ahmed &amp;<br />
+                      Manotosh Kumar Phade
+                    </p>
                   </div>
                 </div>
               </div>

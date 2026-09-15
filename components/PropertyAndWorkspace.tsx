@@ -28,7 +28,7 @@ export default function PropertyAndWorkspace() {
             ))}
           </div>
         </div>
-        <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-stone-200 bg-stone-100 shadow-xl">
+        <div className="relative aspect-4/3 overflow-hidden rounded-2xl border border-stone-200 bg-stone-100 shadow-xl">
           <Image src="/houseboat.jpg" alt="Kerala reference image for the Varkala retreat" fill className="object-cover" />
           <div className="absolute inset-x-4 bottom-4 bg-black/65 px-4 py-3 text-xs leading-relaxed text-white backdrop-blur-sm">
             Kerala reference image. The confirmed Varkala property and workspace photographs are provided before payment.
