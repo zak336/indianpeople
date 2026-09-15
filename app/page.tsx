@@ -11,6 +11,7 @@ import Footer from "@/components/Footer";
 import PlacesToSee from "@/components/PlacesToSee";
 import Scheduler from "@/components/Scheduler";
 import BookingCard from "@/components/BookingCard";
+import LiveSeatsPill from "@/components/LiveSeatsPill";
 import { useEffect } from "react";
 import { PRICING } from "@/lib/pricing";
 
@@ -155,6 +156,7 @@ export default function Home() {
 
       <FloatingNav />
       <FloatingAbout />
+      <LiveSeatsPill />
       <main>
         <Hero />
         <About />
